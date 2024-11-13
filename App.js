@@ -1,15 +1,19 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import HomeScreen from "./src/screens/HomeScreen";
+import ClosetScreen from "./src/screens/ClosetScreen";
+import OutfitsScreen from "./src/screens/OutfitsScreen";
+import ProfileScreen from "./src/screens/ProfileScreen";
 
 const navigator = createStackNavigator(
   {
-    Home: HomeScreen,
+    Closet: ClosetScreen,
+    Outfits: OutfitsScreen,
+    Profile: ProfileScreen,
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Closet",
     defaultNavigationOptions: {
-      title: "App",
+      title: "Equipt",
     },
   }
 );
