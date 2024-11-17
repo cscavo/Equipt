@@ -6,11 +6,11 @@ const ProfileScreen = (props) => {
   return (
   <View>    
 
-    <Text style={styles.text}>ProfileScreen</Text>
+    <Text style={styles.text}>Profile</Text>
 
-    <NavBarComp closetIcon={require('../../assets/wardrobe_UI.png')} 
-                toClosetButton={() => {props.navigation.navigate("Closet")}}
-                profileIcon={require('../../assets/person_UI.png')}/>
+    <NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} 
+            toWardrobeButton={() => {props.navigation.navigate("Closet")}}
+            profileIcon={require('../../assets/person_UI.png')}/>
 
   </View>
   
@@ -21,6 +21,7 @@ const ProfileScreen = (props) => {
 const styles = StyleSheet.create({
   text: {
     fontSize: 30,
+    alignSelf: "center"
   },
 });
 

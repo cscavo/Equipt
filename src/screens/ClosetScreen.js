@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, FlatList } from "react-native";
 import NavBarComp from "../components/NavBarComp";
+import WardrobeButtonComp from "../components/WardrobeButtonComp";
 
 //WILL CONTAIN: Closet Screen, Add clothing piece
 
@@ -8,12 +9,17 @@ const ClosetScreen = (props) => {
   return (
 
     <View>
-      <Text style={styles.text}>ClosetScreen</Text>
 
-      <NavBarComp closetIcon={require('../../assets/wardrobe_UI.png')} 
-                  profileIcon={require('../../assets/person_UI.png')}
-                  toProfileButton={() => {props.navigation.navigate("Profile")}}/>
-      
+      <WardrobeButtonComp onPressCloset={() => {props.navigation.navigate("Closet")}} onPressOutfits={() => {props.navigation.navigate("Outfits")}}
+                          closetButtonBold={styles.closetButtonBold}/>
+
+      <Text style={styles.text}>Closet</Text>
+
+
+      <NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} 
+            profileIcon={require('../../assets/person_UI.png')}
+            toProfileButton={() => {props.navigation.navigate("Profile")}}/>
+
     </View>
   
     );
@@ -21,7 +27,12 @@ const ClosetScreen = (props) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 30,
+    fontSize: 35,
+    alignSelf: "center",
+    paddingTop: 20
+  },
+  closetButtonBold: {
+    borderWidth: 3,
   },
 });
 
