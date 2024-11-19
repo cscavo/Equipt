@@ -1,13 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, Image, StyleSheet, FlatList } from "react-native";
 import NavBarComp from "../components/NavBarComp";
 import WardrobeButtonComp from "../components/WardrobeButtonComp";
 
-//WILL CONTAIN: Closet Screen, Add clothing piece
 
 const ClosetScreen = (props) => {
-  return (
 
+  return(
     <View>
 
       <WardrobeButtonComp onPressCloset={() => {props.navigation.navigate("Closet")}} onPressOutfits={() => {props.navigation.navigate("Outfits")}}
@@ -16,14 +15,16 @@ const ClosetScreen = (props) => {
       <Text style={styles.text}>Closet</Text>
 
 
-      <NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} 
+
+      <NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} wardrobeIconBox={styles.closetButtonBold}
             profileIcon={require('../../assets/person_UI.png')}
-            toProfileButton={() => {props.navigation.navigate("Profile")}}/>
+            onPressCamera={() => {props.navigation.navigate("AddClothing")}}
+            onPressProfile={() => {props.navigation.navigate("Profile")}}/>
 
     </View>
-  
-    );
-};
+  );
+}
+
 
 const styles = StyleSheet.create({
   text: {
@@ -33,6 +34,7 @@ const styles = StyleSheet.create({
   },
   closetButtonBold: {
     borderWidth: 3,
+    borderRadius: 4
   },
 });
 

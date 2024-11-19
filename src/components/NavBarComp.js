@@ -9,16 +9,16 @@ const NavBarComp = (props) => {
     
   <View style={styles.container}>
     
-    <TouchableOpacity onPress={ props.toWardrobeButton }>
-        <Image style={[styles.image, props.wardrobeIconBox]} source={props.wardrobeIcon} />
+    <TouchableOpacity onPress={ props.onPressWardrobe }>
+        <Image style={[styles.image, props.wardrobeIconBox]} source={require('../../assets/wardrobe_UI.png')} />
     </TouchableOpacity>
 
-    <TouchableOpacity>
+    <TouchableOpacity onPress={ props.onPressCamera }>
         <Image style={styles.image} source={require('../../assets/camera_UI.png')} />
     </TouchableOpacity>
 
-    <TouchableOpacity onPress={ props.toProfileButton }>
-        <Image style={[styles.image, styles.profileIcon, props.profileIconBox]} source={props.profileIcon} />
+    <TouchableOpacity onPress={ props.onPressProfile }>
+        <Image style={[styles.image, props.profileIconBox]} source={props.profileIcon} />
     </TouchableOpacity>
 
   </View>
@@ -26,40 +26,20 @@ const NavBarComp = (props) => {
   );
 };
 
-/*
-For Closet Screen: 
-<NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} 
-            profileIcon={require('../../assets/person_UI.png')}
-            toProfileButton={() => {props.navigation.navigate("Profile")}}/>
-
-For Outfits Screen:
-<NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} 
-            profileButton={require('../../assets/person_UI.png')}
-            toProfileButton={() => {props.navigation.navigate("Profile")}}/>
-
-For Profile Screen:
-<NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} 
-            toWardrobeButton={() => {props.navigation.navigate("Closet")}}
-            profileIcon={require('../../assets/person_UI.png')}/>
-*/
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
-        
         borderTopWidth: 1,
-        paddingTop: 10,
-        margin: 0,
+        paddingVertical: 10,
         marginTop: 20,
         gap: 60,
+        backgroundColor: 'lightgrey',
     },
     image: {
         height: 60,
         width: 60,
-    },
-    profileIcon: {
-        bottom: 6,
     },
 });
 
