@@ -10,7 +10,7 @@ const SaveButtonComp = (props) => {
   <View style={styles.container}>
     
     <TouchableOpacity onPress={ props.onPressSave }>
-        <Text style={styles.text}>save</Text>
+        <Text style={[styles.text, props.saveButtonStyle]}>save</Text>
     </TouchableOpacity>
 
   </View>

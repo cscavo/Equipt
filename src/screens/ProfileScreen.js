@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 30,
     alignSelf: "center",
-    paddingTop: 30,
+    paddingTop: 50,
   },
   chooseSkinColor: {
     height: 110,

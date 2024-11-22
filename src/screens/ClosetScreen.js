@@ -7,14 +7,14 @@ import WardrobeButtonComp from "../components/WardrobeButtonComp";
 const ClosetScreen = (props) => {
 
   return(
-    <View>
+    <View style={styles.image}>
 
       <WardrobeButtonComp onPressCloset={() => {props.navigation.navigate("Closet")}} onPressOutfits={() => {props.navigation.navigate("Outfits")}}
                           closetButtonBold={styles.closetButtonBold}/>
 
       <Text style={styles.text}>Closet</Text>
 
-
+      <Image style={styles.image}/>
 
       <NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} wardrobeIconBox={styles.closetButtonBold}
             profileIcon={require('../../assets/person_UI.png')}
@@ -36,6 +36,9 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderRadius: 4
   },
+  image: {
+    flex: 1
+  }
 });
 
 export default ClosetScreen;

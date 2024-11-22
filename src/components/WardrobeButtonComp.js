@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
+        paddingTop: 20,
         margin: 0,
         marginTop: 20,
         gap: 20,
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         height: 80,
         width: 375,
-        top: 19,
+        top: 40,
     },
 });
 

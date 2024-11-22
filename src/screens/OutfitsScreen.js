@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, Touchable} from "react-native";
 import NavBarComp from "../components/NavBarComp";
 import WardrobeButtonComp from "../components/WardrobeButtonComp";
+import SaveButtonComp from "../components/SaveButtonComp";
 
 //WILL CONTAIN: Outfit Screen, Add outfit, Select clothing type
 
@@ -21,12 +22,14 @@ const OutfitsScreen = (props) => {
     case OUTFIT_SCREEN_STATE:
       whatToDisplay = 
 
-      <View>
+      <View style={outfit_styles.image}>
 
         <WardrobeButtonComp onPressCloset={() => {props.navigation.navigate("Closet")}} onPressOutfits={() => {props.navigation.navigate("Outfits")}}
                         outfitsButtonBold={outfit_styles.outfitsButtonBold}/>
 
         <Text style={outfit_styles.text}>Outfits</Text>
+
+        <Image style={outfit_styles.image}/>
 
         <TouchableOpacity onPress={() => {setScreenState(ADDOUTFIT_SCREEN_STATE)}}>
           <Image style={outfit_styles.addOutfitIcon} source={require('../../assets/addOutfit_UI.png')} />
@@ -67,6 +70,8 @@ const OutfitsScreen = (props) => {
 
         </View>
 
+        <SaveButtonComp onPressSave={() => {setScreenState(OUTFIT_SCREEN_STATE)}} saveButtonStyle={addOutfit_styles.saveButton}/>
+
         
       </View>
         
@@ -83,6 +88,11 @@ const OutfitsScreen = (props) => {
           <Image style={chooseClothing_styles.backArrow} source={require('../../assets/backArrow_UI.png')}></Image>
         </TouchableOpacity>
         <Text style={chooseClothing_styles.text}>{clothingType}</Text>
+
+        <TouchableOpacity onPress={() => {setScreenState(ADDOUTFIT_SCREEN_STATE)}}>
+          <Image style={chooseClothing_styles.dummyClothing}></Image>
+        </TouchableOpacity>
+        
 
       </View>
         
@@ -110,21 +120,25 @@ const outfit_styles = StyleSheet.create({
     height: 80,
     width: 80,
     alignSelf: "flex-end",
-    top: 270,
+    bottom: 0,
     right: 10
   },
+  image: {
+    flex: 1
+  }
+  
 });
 
 const addOutfit_styles = StyleSheet.create({
   equipText: {
     fontSize: 30,
     alignSelf: "center",
-    paddingTop: 20
+    paddingTop: 50
   },
   background: {
     alignSelf: "center",
     position: "absolute",
-    marginTop: 80,
+    marginTop: 110,
     height: 350,
     width: 400,
     backgroundColor: "lightgrey"
@@ -140,6 +154,9 @@ const addOutfit_styles = StyleSheet.create({
     height: 80,
     width: 80,
     backgroundColor: "slategrey",
+  },
+  saveButton: {
+    top: 140
   }
 });
 
@@ -147,13 +164,21 @@ const chooseClothing_styles = StyleSheet.create({
   text: {
     fontSize: 30,
     alignSelf: "center",
-    paddingTop: 25
+    paddingTop: 45
   },
   backArrow: {
     height: 70,
     width: 70,
-    marginTop: 10,
+    marginTop: 30,
     position: "absolute"
+  }, 
+  dummyClothing: {
+    height: 150,
+    width: 150,
+    top: 80,
+    left: 30,
+    backgroundColor: "slategrey",
+
   }
 });
 
