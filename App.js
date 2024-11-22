@@ -1,11 +1,11 @@
 import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import { createSwitchNavigator } from "react-navigation";
 import ClosetScreen from "./src/screens/ClosetScreen";
 import AddClothingScreen from "./src/screens/AddClothingScreen";
 import OutfitsScreen from "./src/screens/OutfitsScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 
-const navigator = createStackNavigator(
+const navigator = createSwitchNavigator(
   {
     Closet: ClosetScreen,
     AddClothing: AddClothingScreen,
@@ -14,9 +14,9 @@ const navigator = createStackNavigator(
   },
   {
     initialRouteName: "Closet",
-    defaultNavigationOptions: {
+    /* defaultNavigationOptions: {
       title: "Equipt",
-    },
+    }, */
   }
 );
 

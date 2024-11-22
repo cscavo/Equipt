@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import SaveButtonComp from "../components/SaveButtonComp";
 
+//Note for myself (Natalia): X in a box icon will go in this screen to return to the previous screen
 
 
 const AddClothingScreen = (props) => {
