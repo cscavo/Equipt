@@ -4,15 +4,20 @@ import SaveButtonComp from "../components/SaveButtonComp";
 
 //Note for myself (Natalia): X in a box icon will go in this screen to return to the previous screen
 
-
 const AddClothingScreen = (props) => {
-
+  const {navigation} = props;
+  const previousScreen = navigation.getParam("previousScreen", "Closet");
   return(
     <View>
 
         <Text style={styles.photo}>[photo]</Text>
 
-        <Text style={styles.categoryText}>Categtory</Text>
+      <TouchableOpacity onPress={() => navigation.navigate(previousScreen)}
+        style = {styles.closeButton}>
+        <Image style={{width: 45, height: 45}} source={require('../../assets/close-button.png')} />
+      </TouchableOpacity>
+
+        <Text style={styles.categoryText}>Category</Text>
 
         <TouchableOpacity style={styles.categoryContainer}>
             <Text style={styles.category}>top</Text>
@@ -20,11 +25,9 @@ const AddClothingScreen = (props) => {
             <Text style={styles.category}>accessory</Text>
         </TouchableOpacity>
         
-
-        <SaveButtonComp onPressSave={() => {props.navigation.navigate("Closet")}}/>
-
-        
-
+        <View style = {styles.saveButtonContainer}>
+          <SaveButtonComp onPressSave={() => {props.navigation.navigate("Closet")}}/>
+        </View>
     </View>
   );
 }
@@ -39,11 +42,18 @@ const styles = StyleSheet.create({
     marginTop: 60,
     marginBottom: 30,
     backgroundColor: 'lightgrey',
-    borderWidth: 2
+    borderWidth: 2,
+    top: 70
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 65,
+    left: 15
   },
   categoryText: {
     fontSize: 30,
-    marginLeft: 30
+    marginLeft: 30,
+    top: 90
   },
   categoryContainer: {
     flexDirection: 'row',
@@ -51,6 +61,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     marginBottom: 25,
     gap: 17,
+    top: 100
   },
   category: {
     fontSize: 20,
@@ -58,8 +69,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     paddingHorizontal: 15
+  },
+  saveButtonContainer: {
+    top: 100
   }
-
 
 });
 
