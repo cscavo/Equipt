@@ -4,6 +4,7 @@ import ClosetScreen from "./src/screens/ClosetScreen";
 import AddClothingScreen from "./src/screens/AddClothingScreen";
 import OutfitsScreen from "./src/screens/OutfitsScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
+import {Provider} from "./src/context/ClothingContext";
 
 const navigator = createSwitchNavigator(
   {
@@ -20,4 +21,10 @@ const navigator = createSwitchNavigator(
   }
 );
 
-export default createAppContainer(navigator);
+const App = createAppContainer(navigator);
+export default () => {
+  return <Provider>
+  <App />
+  </Provider>
+
+}
