@@ -3,6 +3,7 @@ import { withNavigation } from "react-navigation";
 import { Text, StyleSheet,View, Image,Button, FlatList, TouchableOpacity} from "react-native";
 
 import {Context} from '../context/ClothingContext';
+import {OutfitContext} from '../context/OutfitContext';
 import {Feather } from '@expo/vector-icons';
 import ImageDetail from './ImageDetail';
 
@@ -11,13 +12,14 @@ const ClosetList = (props) => {
 
     
   const {state, addClothing, deleteClothing} = useContext(Context);
+
     
   return <View style= {styles.view}> 
     
     
     
     <FlatList data={state} 
-    KeyExtractor={(clothingItem) => {return clothingItem.title}} 
+    KeyExtractor={(clothingItem) => {return clothingItem.id}} 
       renderItem={({item}) => {
         console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.id);
         return <TouchableOpacity onPress = {() => {props.navigation.navigate("Closet")}}>

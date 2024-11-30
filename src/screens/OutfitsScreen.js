@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, Touchable} from "react-native";
 import NavBarComp from "../components/NavBarComp";
 import WardrobeButtonComp from "../components/WardrobeButtonComp";
 import SaveButtonComp from "../components/SaveButtonComp";
+import {Context} from "../context/OutfitContext";
+import OutfitListComp from "../components/OutfitListComp";
 
 //WILL CONTAIN: Outfit Screen, Add outfit, Select clothing type
 
@@ -16,6 +18,9 @@ const OutfitsScreen = (props) => {
 
   const [screenState, setScreenState] = useState(OUTFIT_SCREEN_STATE)
   const [clothingType, setClothingType] = useState("");
+  const [outfitToSend, setOutfitToSend] = useState();
+  
+  const {state, addOutfit, deleteOutfit} = useContext(Context);
 
   switch(screenState){
 
@@ -28,7 +33,7 @@ const OutfitsScreen = (props) => {
                         outfitsButtonBold={outfit_styles.outfitsButtonBold}/>
 
         <Text style={outfit_styles.text}>Outfits</Text>
-
+       <OutfitListComp/>
         <Image style={outfit_styles.image}/>
 
         <TouchableOpacity onPress={() => {setScreenState(ADDOUTFIT_SCREEN_STATE)}}>
@@ -70,7 +75,7 @@ const OutfitsScreen = (props) => {
 
         </View>
 
-        <SaveButtonComp onPressSave={() => {setScreenState(OUTFIT_SCREEN_STATE)}} saveButtonStyle={addOutfit_styles.saveButton}/>
+        <SaveButtonComp onPressSave={() => {setScreenState(OUTFIT_SCREEN_STATE), addOutfit()}} saveButtonStyle={addOutfit_styles.saveButton}/>
 
         
       </View>

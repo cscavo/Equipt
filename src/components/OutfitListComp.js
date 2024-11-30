@@ -1,32 +1,34 @@
 import React, {useState,useContext} from "react";
 import { withNavigation } from "react-navigation";
-import { Text, StyleSheet,View, Image,Button, FlatList} from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import {Context} from '../context/BlogContext';
+import { Text, StyleSheet,View, Image,Button, FlatList, TouchableOpacity} from "react-native";
+
+
+import {Context} from '../context/OutfitContext'
 import {Feather } from '@expo/vector-icons';
-import ImageDetail from '.../ImageDetail';
+import ImageDetail from './ImageDetail';
 
 
-const ClosetListComp = (props) => {
+const OutfitListComp = (props) => {
 
     
-    const {state,} = useContext(Context);
+  const {state, addOutfit, deleteOutfit} = useContext(Context);
+
     
   return <View style= {styles.view}> 
     
     
     
     <FlatList data={state} 
-    KeyExtractor={(blogPost) => {return blogPost.title}} 
+    KeyExtractor={(outfitItem) => {return outfitItem.title}} 
       renderItem={({item}) => {
-        console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.id);
-        return <TouchableOpacity onPress = {() => {props.navigation.navigate("Closet"), item.id}}>
+        console.log("RENDERING A OUTFIT ITEM WITH ID: " + item.id);
+        return <TouchableOpacity onPress = {() => {addOutfit()}}>
         <View style= {styles.row}> 
-          <ImageDetail /> 
+          {item.id}
           
 
           
-            <TouchableOpacity  onPress={() => {}}>
+            <TouchableOpacity  onPress={() => {deleteOutfit(item.id)}}>
                  <Feather name = "trash" style={styles.icon}/>
              </TouchableOpacity>
         </View>
@@ -73,4 +75,4 @@ const styles = StyleSheet.create({
       },
 });
 
-export default withNavigation(ClosetListComp);
+export default withNavigation(OutfitListComp);
