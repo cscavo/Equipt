@@ -6,7 +6,7 @@ import OutfitsScreen from "./src/screens/OutfitsScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import {Provider} from "./src/context/ClothingContext";
 import {Provider as OutfitProvider} from "./src/context/OutfitContext";
-import {Provder as SkinColorProvider} from "./src/context/SkinColorContext"
+import {Provider as SkinColorProvider} from "./src/context/SkinColorContext";
 
 const navigator = createSwitchNavigator(
   {

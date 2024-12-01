@@ -3,9 +3,10 @@ import { withNavigation } from "react-navigation";
 import { Text, StyleSheet,View, Image,Button, FlatList, TouchableOpacity} from "react-native";
 
 import {Context} from '../context/ClothingContext';
-import {OutfitContext} from '../context/OutfitContext';
+import {Context as OutfitContext} from '../context/OutfitContext';
 import {Feather } from '@expo/vector-icons';
 import ImageDetail from './ImageDetail';
+
 
 
 const ClosetList = (props) => {
@@ -13,32 +14,51 @@ const ClosetList = (props) => {
     
   const {state, addClothing, deleteClothing} = useContext(Context);
 
+  const clothingItemID = props.navigation.getParam("id");
+  
+
+
+  /*const clothingItem = props.data.find((clothingItem) => {
+    return clothingItemID === clothingItem.id;
+  })*/
     
-  return <View style= {styles.view}> 
     
     
-    
-    <FlatList data={state} 
+    const filter = <View style= {styles.view}> 
+    <FlatList data={props.data} 
     KeyExtractor={(clothingItem) => {return clothingItem.id}} 
       renderItem={({item}) => {
-        console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.id);
-        return <TouchableOpacity onPress = {() => {props.navigation.navigate("Closet")}}>
+        console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.category);
+        return <TouchableOpacity onPress = {props.addToOutfit}>
         <View style= {styles.row}> 
+          <Text>
+            {item.category}
+          </Text>
           <ImageDetail imageSource= {require('../../assets/chiyo_christmas.png')} /> 
-          <Image style={styles.image} source='../../assets/chiyo christmas.png'/>
-          
-
-          
-            <TouchableOpacity  onPress={() => {deleteClothing(item.id)}}>
-                 <Feather name = "trash" style={styles.icon}/>
-             </TouchableOpacity>
         </View>
         </TouchableOpacity>
-        
+    }} /> 
+    
+</View>
+//FLATLIST NOT BEING FILTERED
+  const noFilter = <View style= {styles.view}> 
+    <FlatList data={props.data} 
+    KeyExtractor={(clothingItem) => {return clothingItem.id}} 
+      renderItem={({item}) => {
+        console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.category);
+        return <TouchableOpacity onPress = {() => {props.navigation.navigate("Closet")}}>
+        <View style= {styles.row}> 
+          <Text>
+          {item.category}
+          </Text>
+          <ImageDetail imageSource= {require('../../assets/chiyo_christmas.png')} />  
+        </View>
+        </TouchableOpacity>
     }} /> 
     
 </View>
   
+  return props.screenState === "filter"? filter: noFilter;
 };
 
 const styles = StyleSheet.create({

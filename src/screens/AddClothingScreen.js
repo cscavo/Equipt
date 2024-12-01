@@ -1,12 +1,16 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import SaveButtonComp from "../components/SaveButtonComp";
+import {Context} from '../context/ClothingContext';
 
 //Note for myself (Natalia): X in a box icon will go in this screen to return to the previous screen
 
 const AddClothingScreen = (props) => {
   const {navigation} = props;
   const previousScreen = navigation.getParam("previousScreen", "Closet");
+  const {state, addClothing} = useContext(Context);
+  const [category, setCategory] = useState(" ");
+  
   return(
     <View>
 
@@ -19,14 +23,20 @@ const AddClothingScreen = (props) => {
 
         <Text style={styles.categoryText}>Category</Text>
 
-        <TouchableOpacity style={styles.categoryContainer}>
+        <View style={styles.categoryContainer}>
+          <TouchableOpacity onPress={() => {setCategory("top")}}>
             <Text style={styles.category}>top</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {setCategory("bottom")}}>
             <Text style={styles.category}>bottom</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {setCategory("accessory")}}>
             <Text style={styles.category}>accessory</Text>
-        </TouchableOpacity>
-        
+          </TouchableOpacity>
+        </View>
+
         <View style = {styles.saveButtonContainer}>
-          <SaveButtonComp onPressSave={() => {props.navigation.navigate("Closet")}}/>
+          <SaveButtonComp onPressSave={() => {addClothing(category), props.navigation.navigate("Closet")}}/>
         </View>
     </View>
   );

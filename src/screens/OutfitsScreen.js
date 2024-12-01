@@ -1,10 +1,16 @@
 import React, {useState, useContext} from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity, Touchable} from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from "react-native";
+
+import {Context} from "../context/OutfitContext";
+import {Context as ClothingContext} from '../context/ClothingContext';
+
 import NavBarComp from "../components/NavBarComp";
 import WardrobeButtonComp from "../components/WardrobeButtonComp";
 import SaveButtonComp from "../components/SaveButtonComp";
-import {Context} from "../context/OutfitContext";
 import OutfitListComp from "../components/OutfitListComp";
+import ClosetList from "../components/ClosetListComp";
+import ImageDetail from '../components/ImageDetail';
+
 
 //WILL CONTAIN: Outfit Screen, Add outfit, Select clothing type
 
@@ -18,9 +24,18 @@ const OutfitsScreen = (props) => {
 
   const [screenState, setScreenState] = useState(OUTFIT_SCREEN_STATE)
   const [clothingType, setClothingType] = useState("");
-  const [outfitToSend, setOutfitToSend] = useState();
+  const [imagesToDisplay, setImagesToDisplay] = useState({});
+  const image = '../../assets/addOutfit_UI.png';
   
-  const {state, addOutfit, deleteOutfit} = useContext(Context);
+  const {addOutfit, deleteOutfit} = useContext(Context);
+  const {state} = useContext(ClothingContext);
+
+  const filterByCategory = (category) =>{
+    let myFilteredArray = state.filter((state) =>{
+      return state.category === category;
+    })
+    return myFilteredArray;
+  }
 
   switch(screenState){
 
@@ -49,6 +64,7 @@ const OutfitsScreen = (props) => {
 
       break;
 
+  // SCREEN WITH MANNEQUIN WHERE YOU SAVE OUTFIT
     case ADDOUTFIT_SCREEN_STATE:
       whatToDisplay = 
 
@@ -74,7 +90,9 @@ const OutfitsScreen = (props) => {
           </TouchableOpacity>
 
         </View>
-
+        <Text>
+        {imagesToDisplay.top}
+        </Text>
         <SaveButtonComp onPressSave={() => {setScreenState(OUTFIT_SCREEN_STATE), addOutfit()}} saveButtonStyle={addOutfit_styles.saveButton}/>
 
         
@@ -84,16 +102,34 @@ const OutfitsScreen = (props) => {
 
       break;
 
+// THE SCREEN WHERE YOU CHOOSE CLOTHING BY CATEOGORY
 
     case CHOOSECLOTHING_SCREEN_STATE:
       whatToDisplay = 
       <View>
-
+        
         <TouchableOpacity onPress={() => {setScreenState(ADDOUTFIT_SCREEN_STATE)}}>
           <Image style={chooseClothing_styles.backArrow} source={require('../../assets/backArrow_UI.png')}></Image>
         </TouchableOpacity>
         <Text style={chooseClothing_styles.text}>{clothingType}</Text>
-
+        
+        <View style= {styles.view}> 
+    <FlatList data={filterByCategory("top")} 
+    KeyExtractor={(clothingItem) => {return clothingItem.id}} 
+      renderItem={({item}) => {
+        console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.id);
+        return <TouchableOpacity onPress = {() => {setImagesToDisplay({...imagesToDisplay, top: item.id}), setScreenState(ADDOUTFIT_SCREEN_STATE)} }>
+        <View style= {styles.row}> 
+          <Text>
+            {item.category}
+          </Text>
+          <ImageDetail imageSource= {require('../../assets/chiyo_christmas.png')} /> 
+        </View>
+        </TouchableOpacity>
+    }} /> 
+    
+</View>
+        
         <TouchableOpacity onPress={() => {setScreenState(ADDOUTFIT_SCREEN_STATE)}}>
           <Image style={chooseClothing_styles.dummyClothing}></Image>
         </TouchableOpacity>
@@ -186,6 +222,39 @@ const chooseClothing_styles = StyleSheet.create({
 
   }
 });
-
+const styles = StyleSheet.create({
+  text: {
+      fontSize: 20,
+      paddingVertical: 20
+      
+  
+    },
+    listText:{
+        fontSize: 15,
+        paddingVertical: 20
+    },
+    roster: {
+      alignItems: "center",
+      
+    },
+    view: {
+      flexDirection: "column",
+      borderColor: 'red',
+      justifyContent: "space-between",
+      flexGrow: 1
+    },
+    row:{
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingVertical: 20,
+      borderTopWidth: 1,
+      borderBottomWidth: 1,
+      borderColor: 'grey',
+      
+    },
+    icon: {
+      fontSize: 40
+    },
+});
 
 export default OutfitsScreen;

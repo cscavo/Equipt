@@ -9,6 +9,13 @@ import {Context} from '../context/ClothingContext';
 const ClosetScreen = (props) => {
   const {state, addClothing} = useContext(Context);
 
+  const filterByCategory = (category) =>{
+    let myFilteredArray = state.filter((state) =>{
+      return state.category === category;
+    })
+    return myFilteredArray;
+  }
+
   return(
     <View style={styles.image}>
 
@@ -17,13 +24,14 @@ const ClosetScreen = (props) => {
 
       <Text style={styles.text}>Closet</Text>
       
-      <Image style={styles.image}/>
 
-      <ClosetList/>
+      <View style={styles.closetListContainer}>
+      <ClosetList  data= {state}/>
+      </View>
 
       <NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} wardrobeIconBox={styles.closetButtonBold}
             profileIcon={require('../../assets/person_UI.png')}
-            onPressCamera={() => addClothing()}
+            onPressCamera={() => {props.navigation.navigate("AddClothing")}}
             onPressProfile={() => {props.navigation.navigate("Profile")}}/>
 
     </View>
@@ -42,6 +50,9 @@ const styles = StyleSheet.create({
     borderRadius: 4
   },
   image: {
+    flex: 1
+  },
+  closetListContainer: {
     flex: 1
   }
 });

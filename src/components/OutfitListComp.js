@@ -24,7 +24,9 @@ const OutfitListComp = (props) => {
         console.log("RENDERING A OUTFIT ITEM WITH ID: " + item.id);
         return <TouchableOpacity onPress = {() => {addOutfit()}}>
         <View style= {styles.row}> 
+          <Text>
           {item.id}
+          </Text>
           
 
           

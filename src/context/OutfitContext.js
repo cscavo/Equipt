@@ -14,7 +14,7 @@ const outfitReducer = (state, action) => {
                     return outfitItem.id !== action.payload
                 })
 
-                case 'add_TopToOutfit':
+        case 'add_TopToOutfit':
                 return state.map((outfitItem) => {
                     if (outfitItem.id === action.payload.id) {
                         {
@@ -22,6 +22,33 @@ const outfitReducer = (state, action) => {
                            
 
                             return {...state, top: action.payload.top } ;
+                        }   
+                    }
+            
+                    else{
+                        return blogPost;
+                    }
+                })
+        case 'add_BottomToOutfit':
+                return state.map((outfitItem) => {
+                    if (outfitItem.id === action.payload.id) {
+                        {
+                            return {...state, bottom: action.payload.top } ;
+                        }  
+                    }
+            
+                    else{
+                        return blogPost;
+                    }
+                })
+        case 'add_AccessoryToOutfit':
+                return state.map((outfitItem) => {
+                    if (outfitItem.id === action.payload.id) {
+                        {
+                           
+                           
+
+                            return {...state, accessory: action.payload.top } ;
                         }
 
 
@@ -58,8 +85,18 @@ const addToptoOutfit = () =>{
         dispatch({type: 'add_TopToOutfit', payload: {top: top, id: id}})
     }
 }
+const addBottomtoOutfit = () =>{
+    return (id, bottom) =>{
+        dispatch({type: 'add_BottomToOutfit', payload: {bottom: bottom, id: id}})
+    }
+}
+const addAccessorytoOutfit = () =>{
+    return (id, accessory) =>{
+        dispatch({type: 'add_AccessoryToOutfit', payload: {accessory: accessory, id: id}})
+    }
+}
 
 export const {Context, Provider} = createDataContext(outfitReducer,
-                                    {addOutfit, deleteOutfit}, 
-                                    [{title: "TEST TITLE", imagePath: '../../assets/chiyo christmas.png', id: 1}]);
+                                    {addOutfit, deleteOutfit, addToptoOutfit, addBottomtoOutfit, addAccessorytoOutfit}, 
+                                    [{}]);
 
