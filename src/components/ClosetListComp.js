@@ -36,7 +36,7 @@ const ClosetList = (props) => {
           <Text style={styles.text}>
             {item.id}
           </Text>
-          <ImageDetail imageSource= {require('../../assets/chiyo_christmas.png')} /> 
+          <ImageDetail imageSource= {item.imagePath} /> 
         </View>
         </TouchableOpacity>
     }} /> 

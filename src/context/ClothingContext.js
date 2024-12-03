@@ -1,11 +1,12 @@
 import React, {useReducer} from "react";
 import createDataContext from "./createDataContext"
 
-const generateClothing = (category) => {
+
+const generateClothing = (category, image) => {
     let clothing = {};
     //let clothingTagArray = ["Top", "Bottom", "Accessory"]
      clothing.id = Math.floor(Math.random()* 9999);
-     clothing.imagePath = '../../assets/chiyo_christmas.png';
+     clothing.imagePath = image;
      clothing.category = category;
 
      return clothing;
@@ -27,9 +28,9 @@ const clothingReducer = (state, action) => {
     }   
 }
 const addClothing = (dispatch) => {
-    return async (category,callback) =>{
+    return async (category, image, callback) =>{
   
-    dispatch({type: 'add_clothing', payload: {category}})
+    dispatch({type: 'add_clothing', payload: {category, image}})
     callback();
     }
 }

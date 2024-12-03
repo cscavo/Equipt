@@ -2,8 +2,15 @@ import React, {useContext, useState} from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableHighlight } from "react-native";
 import SaveButtonComp from "../components/SaveButtonComp";
 import {Context} from '../context/ClothingContext';
+import ImageDetail from '../components/ImageDetail';
 
 //Note for myself (Natalia): X in a box icon will go in this screen to return to the previous screen
+
+const randomClothingPiece = () => {
+  let clothingImage = [require("../../assets/adaptive-icon.png"), require("../../assets/favicon.png")];
+  let image = clothingImage[Math.floor(Math.random() * clothingImage.length)];
+  return image;
+}
 
 const AddClothingScreen = (props) => {
   const {navigation} = props;
@@ -11,26 +18,12 @@ const AddClothingScreen = (props) => {
   const {state, addClothing} = useContext(Context);
   const [category, setCategory] = useState(" ");
 
-
-  var [ isPressTop, setIsPressTop ] = useState(false);
-  var [ isPressBottom, setIsPressBottom ] = useState(false);
-  var [ isPressAcc, setIsPressAcc ] = useState(false);
-
-/*
-  var touchProps = {
-    activeOpacity: 1,
-    underlayColor: 'grey',                               // <-- "backgroundColor" will be always overwritten by "underlayColor"
-    style: isPress ? styles.btnPress : styles.btnNormal, // <-- but you can still apply other style changes
-    onHideUnderlay: () => setIsPress(false),
-    onShowUnderlay: () => setIsPress(true),
-    onPress: () => console.log('HELLO'),                 // <-- "onPress" is apparently required
-  };
-  */
   
   return(
     <View styles={styles.container}>
 
-        <Text style={styles.photo}>[photo]</Text>
+
+        <ImageDetail imageSource={(randomClothingPiece())} />
 
       <TouchableOpacity onPress={() => navigation.navigate(previousScreen)}
         style = {styles.closeButton}>

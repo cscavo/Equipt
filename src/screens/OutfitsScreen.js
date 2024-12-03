@@ -25,6 +25,7 @@ const OutfitsScreen = (props) => {
   const [screenState, setScreenState] = useState(OUTFIT_SCREEN_STATE)
   const [clothingType, setClothingType] = useState("");
   const [imagesToDisplay, setImagesToDisplay] = useState({});
+  const [clothingToFilter, setClothingToFilter] = useState("");
   const image = '../../assets/addOutfit_UI.png';
   
   const {addOutfit, deleteOutfit} = useContext(Context);
@@ -35,6 +36,28 @@ const OutfitsScreen = (props) => {
       return state.category === category;
     })
     return myFilteredArray;
+  }
+
+  const addToState = (category, id) => {
+    switch(category){
+      case "top" :
+        setImagesToDisplay({...imagesToDisplay, top: id});
+        break;
+      case "bottom" :
+        setImagesToDisplay({...imagesToDisplay, bottom: id});
+        break;
+      case "accessory" :
+        setImagesToDisplay({...imagesToDisplay, accessory: id});
+        break;
+      case "emptyObject" :
+        setImagesToDisplay({...imagesToDisplay, top: null, bottom: null, accessory: null});
+        break;
+      default: {
+        return {...imagesToDisplay};
+    }
+
+    }
+    
   }
 
   switch(screenState){
@@ -74,32 +97,58 @@ const OutfitsScreen = (props) => {
         <Text style={addOutfit_styles.equipText}>Equip Clothing</Text>
         <Image style={addOutfit_styles.background}></Image>
 
+        <TouchableOpacity onPress={() => {setScreenState(OUTFIT_SCREEN_STATE)}}
+          style = {addOutfit_styles.closeButton}>
+          <Image style={{width: 45, height: 45}} source={require('../../assets/close-button.png')} />
+        </TouchableOpacity>
+
         <View style={addOutfit_styles.buttonContainer}>
 
-          <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
-                                           {setClothingType("Tops")}}}>
+          {imagesToDisplay.top == null
+          ? <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
+                                           {setClothingType("Tops")}
+                                            setClothingToFilter("top")}}>
             <Image style={addOutfit_styles.clothingButton}></Image>
           </TouchableOpacity>
+          : <Text>DISPLAY</Text>
+          }
 
-          <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
-                                           {setClothingType("Bottoms")}}}>
+          {imagesToDisplay.bottom == null
+          ? <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
+                                           {setClothingType("Bottoms")}
+                                            setClothingToFilter("bottom")}}>
             <Image style={addOutfit_styles.clothingButton}></Image>
           </TouchableOpacity>
+          : <Text>DISPLAY</Text>
+          }
 
-          <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
-                                           {setClothingType("Accessories")}}}>
+          {imagesToDisplay.accessory == null
+          ? <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
+                                           {setClothingType("Accessories")}
+                                            setClothingToFilter("accessory")}}>
             <Image style={addOutfit_styles.clothingButton}></Image>
           </TouchableOpacity>
+          : <Text>DISPLAY</Text>
+          }
+
+          
+          <Text>{imagesToDisplay.top}</Text>
+          <Text>{imagesToDisplay.bottom}</Text>
+          <Text>{imagesToDisplay.accessory}</Text>
+          
+
+          
 
         </View>
-          <Text>{imagesToDisplay.top}</Text>
-        <SaveButtonComp onPressSave={() => {setScreenState(OUTFIT_SCREEN_STATE), addOutfit()}} saveButtonStyle={addOutfit_styles.saveButton}/>
+        
+
+        <SaveButtonComp onPressSave={() => {setScreenState(OUTFIT_SCREEN_STATE), addOutfit(), addToState("emptyObject")}} saveButtonStyle={addOutfit_styles.saveButton} />
 
         
       </View>
         
-        
-
+        console.log(imagesToDisplay);
+        console.log(clothingToFilter);
       break;
 
 // THE SCREEN WHERE YOU CHOOSE CLOTHING BY CATEOGORY
@@ -116,12 +165,12 @@ const OutfitsScreen = (props) => {
         
         <View style= {chooseClothing_styles.container}> 
           <FlatList 
-            data={filterByCategory("top")} 
+            data={filterByCategory(clothingToFilter)} 
             numColumns={2}
             KeyExtractor={(clothingItem) => {return clothingItem.id}} 
             renderItem={({item}) => {
               console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.id);
-              return <TouchableOpacity onPress = {() => {setImagesToDisplay({...imagesToDisplay, top: item.id}), setScreenState(ADDOUTFIT_SCREEN_STATE)} }>
+              return <TouchableOpacity onPress = {() => {addToState(clothingToFilter, item.id), setScreenState(ADDOUTFIT_SCREEN_STATE)} }>
         
               <View> 
                 <ImageDetail description={item.category} imageSource= {require('../../assets/chiyo_christmas.png')} /> 
@@ -168,15 +217,20 @@ const outfit_styles = StyleSheet.create({
 });
 
 const addOutfit_styles = StyleSheet.create({
+  closeButton: {
+    position: 'absolute',
+    top: 65,
+    left: 15
+  },
   equipText: {
     fontSize: 30,
     alignSelf: "center",
-    paddingTop: 50
+    paddingTop: 70
   },
   background: {
     alignSelf: "center",
     position: "absolute",
-    marginTop: 110,
+    marginTop: 130,
     height: 350,
     width: 400,
     backgroundColor: "lightgrey"
@@ -195,7 +249,7 @@ const addOutfit_styles = StyleSheet.create({
   },
   saveButton: {
     top: 140
-  }
+  },
 });
 
 const chooseClothing_styles = StyleSheet.create({
