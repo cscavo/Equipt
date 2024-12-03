@@ -4,7 +4,8 @@ import { Text, StyleSheet,View, Image} from "react-native";
 const ImageDetail = (props) => {
 
     console.log(props);
-  return <View style={styles.view}>
+    
+  return <View style={styles.container}>
     <Text style={styles.text}>{props.description}</Text>
     <Image style={styles.image} source={props.imageSource}/>
     
@@ -14,24 +15,20 @@ const ImageDetail = (props) => {
 
 const styles = StyleSheet.create({
   image: {
-    borderColor: 'red',
-    borderWidth: 3,
-    width: 300,
-    height: 300,
-    flex: 1,
+    width: 150,
+    height: 150,
     
   },
   text: {
-    borderColor: 'red',
-    borderWidth: 3,
-    //width: 100,
-    //height: 5,
-    fontSize: 20
-    
-
+    //borderColor: 'red',
+    //borderWidth: 3,
+    //fontSize: 20
   },
   view:{
-    alignItems: "center"
+    //alignItems: "center",
+  },
+  container: {
+    padding: 10
   }
 });
 

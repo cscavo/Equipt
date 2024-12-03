@@ -18,6 +18,7 @@ const ClosetScreen = (props) => {
 
   return(
     <View style={styles.image}>
+      
 
       <WardrobeButtonComp onPressCloset={() => {props.navigation.navigate("Closet")}} onPressOutfits={() => {props.navigation.navigate("Outfits")}}
                           closetButtonBold={styles.closetButtonBold}/>
@@ -26,7 +27,7 @@ const ClosetScreen = (props) => {
       
 
       <View style={styles.closetListContainer}>
-      <ClosetList  data= {state}/>
+        <ClosetList  data= {state}/>
       </View>
 
       <NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} wardrobeIconBox={styles.closetButtonBold}
@@ -46,8 +47,9 @@ const styles = StyleSheet.create({
     paddingTop: 20
   },
   closetButtonBold: {
-    borderWidth: 3,
-    borderRadius: 4
+    borderWidth: 2,
+    borderRadius: 4,
+    backgroundColor: "lightgrey"
   },
   image: {
     flex: 1

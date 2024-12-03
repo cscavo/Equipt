@@ -40,16 +40,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingTop: 20,
         margin: 0,
-        marginTop: 20,
+        marginTop: 30,
         gap: 20,
     },
     image: {
         borderTopWidth: 1.5,
         borderBottomWidth: 1.5,
         position: "absolute",
-        height: 80,
-        width: 375,
-        top: 40,
+        height: 75,
+        width: 500,
+        top: 52,
     },
 });
 

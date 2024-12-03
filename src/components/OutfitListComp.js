@@ -18,22 +18,20 @@ const OutfitListComp = (props) => {
     
     
     
-    <FlatList data={state} 
-    KeyExtractor={(outfitItem) => {return outfitItem.title}} 
+    <FlatList 
+      data={state} 
+      KeyExtractor={(outfitItem) => {return outfitItem.title}} 
       renderItem={({item}) => {
         console.log("RENDERING A OUTFIT ITEM WITH ID: " + item.id);
         return <TouchableOpacity onPress = {() => {addOutfit()}}>
-        <View style= {styles.row}> 
-          <Text>
-          {item.id}
-          </Text>
-          
+          <View style= {styles.row}> 
+            <Text>{item.id}</Text>
 
-          
             <TouchableOpacity  onPress={() => {deleteOutfit(item.id)}}>
                  <Feather name = "trash" style={styles.icon}/>
              </TouchableOpacity>
-        </View>
+
+          </View>
         </TouchableOpacity>
         
     }} /> 
@@ -59,9 +57,9 @@ const styles = StyleSheet.create({
       },
       view: {
         flexDirection: "column",
-        borderColor: 'red',
         justifyContent: "space-between",
-        flexGrow: 1
+        flex: 1,
+        paddingVertical: 20,
       },
       row:{
         flexDirection: 'row',

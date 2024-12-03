@@ -42,14 +42,16 @@ const OutfitsScreen = (props) => {
     case OUTFIT_SCREEN_STATE:
       whatToDisplay = 
 
-      <View style={outfit_styles.image}>
+      <View style={styles.flex}>
 
         <WardrobeButtonComp onPressCloset={() => {props.navigation.navigate("Closet")}} onPressOutfits={() => {props.navigation.navigate("Outfits")}}
                         outfitsButtonBold={outfit_styles.outfitsButtonBold}/>
 
         <Text style={outfit_styles.text}>Outfits</Text>
-       <OutfitListComp/>
-        <Image style={outfit_styles.image}/>
+       
+        <OutfitListComp />
+
+        <Image style={styles.flex}/>
 
         <TouchableOpacity onPress={() => {setScreenState(ADDOUTFIT_SCREEN_STATE)}}>
           <Image style={outfit_styles.addOutfitIcon} source={require('../../assets/addOutfit_UI.png')} />
@@ -90,9 +92,7 @@ const OutfitsScreen = (props) => {
           </TouchableOpacity>
 
         </View>
-        <Text>
-        {imagesToDisplay.top}
-        </Text>
+          <Text>{imagesToDisplay.top}</Text>
         <SaveButtonComp onPressSave={() => {setScreenState(OUTFIT_SCREEN_STATE), addOutfit()}} saveButtonStyle={addOutfit_styles.saveButton}/>
 
         
@@ -106,33 +106,32 @@ const OutfitsScreen = (props) => {
 
     case CHOOSECLOTHING_SCREEN_STATE:
       whatToDisplay = 
-      <View>
+      <View style={{flex: 1}}>
         
         <TouchableOpacity onPress={() => {setScreenState(ADDOUTFIT_SCREEN_STATE)}}>
           <Image style={chooseClothing_styles.backArrow} source={require('../../assets/backArrow_UI.png')}></Image>
         </TouchableOpacity>
+
         <Text style={chooseClothing_styles.text}>{clothingType}</Text>
         
-        <View style= {styles.view}> 
-    <FlatList data={filterByCategory("top")} 
-    KeyExtractor={(clothingItem) => {return clothingItem.id}} 
-      renderItem={({item}) => {
-        console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.id);
-        return <TouchableOpacity onPress = {() => {setImagesToDisplay({...imagesToDisplay, top: item.id}), setScreenState(ADDOUTFIT_SCREEN_STATE)} }>
-        <View style= {styles.row}> 
-          <Text>
-            {item.category}
-          </Text>
-          <ImageDetail imageSource= {require('../../assets/chiyo_christmas.png')} /> 
-        </View>
-        </TouchableOpacity>
-    }} /> 
-    
-</View>
+        <View style= {chooseClothing_styles.container}> 
+          <FlatList 
+            data={filterByCategory("top")} 
+            numColumns={2}
+            KeyExtractor={(clothingItem) => {return clothingItem.id}} 
+            renderItem={({item}) => {
+              console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.id);
+              return <TouchableOpacity onPress = {() => {setImagesToDisplay({...imagesToDisplay, top: item.id}), setScreenState(ADDOUTFIT_SCREEN_STATE)} }>
         
-        <TouchableOpacity onPress={() => {setScreenState(ADDOUTFIT_SCREEN_STATE)}}>
-          <Image style={chooseClothing_styles.dummyClothing}></Image>
-        </TouchableOpacity>
+              <View> 
+                <ImageDetail description={item.category} imageSource= {require('../../assets/chiyo_christmas.png')} /> 
+              </View>
+
+              </TouchableOpacity>
+              }} /> 
+    
+        </View>
+
         
 
       </View>
@@ -153,8 +152,9 @@ const outfit_styles = StyleSheet.create({
     paddingTop: 20
   },
   outfitsButtonBold: {
-    borderWidth: 3,
-    borderRadius: 4
+    borderWidth: 2,
+    borderRadius: 4,
+    backgroundColor: "lightgrey"
   },
   addOutfitIcon: {
     position: "absolute",
@@ -164,9 +164,6 @@ const outfit_styles = StyleSheet.create({
     bottom: 0,
     right: 10
   },
-  image: {
-    flex: 1
-  }
   
 });
 
@@ -219,15 +216,19 @@ const chooseClothing_styles = StyleSheet.create({
     top: 80,
     left: 30,
     backgroundColor: "slategrey",
-
-  }
+  },
+  container: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    top: 20,
+    width: 340,
+}
 });
 const styles = StyleSheet.create({
   text: {
       fontSize: 20,
       paddingVertical: 20
-      
-  
     },
     listText:{
         fontSize: 15,
@@ -250,11 +251,13 @@ const styles = StyleSheet.create({
       borderTopWidth: 1,
       borderBottomWidth: 1,
       borderColor: 'grey',
-      
     },
     icon: {
       fontSize: 40
     },
+    flex: {
+      flex: 1
+    }
 });
 
 export default OutfitsScreen;

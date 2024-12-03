@@ -23,16 +23,18 @@ const ClosetList = (props) => {
   })*/
     
     
-    
+  //CURRENTLY NOT BEING USED
     const filter = <View style= {styles.view}> 
-    <FlatList data={props.data} 
+    <FlatList 
+    data={props.data} 
+    numColumns={2}
     KeyExtractor={(clothingItem) => {return clothingItem.id}} 
       renderItem={({item}) => {
         console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.category);
         return <TouchableOpacity onPress = {props.addToOutfit}>
-        <View style= {styles.row}> 
-          <Text>
-            {item.category}
+        <View> 
+          <Text style={styles.text}>
+            {item.id}
           </Text>
           <ImageDetail imageSource= {require('../../assets/chiyo_christmas.png')} /> 
         </View>
@@ -40,20 +42,19 @@ const ClosetList = (props) => {
     }} /> 
     
 </View>
+
+
 //FLATLIST NOT BEING FILTERED
-  const noFilter = <View style= {styles.view}> 
-    <FlatList data={props.data} 
+  const noFilter = <View style= {styles.container}> 
+    <FlatList 
+    data={props.data} 
+    numColumns={2}
     KeyExtractor={(clothingItem) => {return clothingItem.id}} 
       renderItem={({item}) => {
         console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.category);
-        return <TouchableOpacity onPress = {() => {props.navigation.navigate("Closet")}}>
-        <View style= {styles.row}> 
-          <Text>
-          {item.category}
-          </Text>
-          <ImageDetail imageSource= {require('../../assets/chiyo_christmas.png')} />  
-        </View>
-        </TouchableOpacity>
+        return <View> 
+            <ImageDetail description={item.category} imageSource= {require('../../assets/chiyo_christmas.png')} />  
+          </View>
     }} /> 
     
 </View>
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         borderColor: 'red',
         justifyContent: "space-between",
-        flexGrow: 1
+        padding: 20
       },
       row:{
         flexDirection: 'row',
@@ -94,6 +95,18 @@ const styles = StyleSheet.create({
       icon: {
         fontSize: 40
       },
+      image: {
+        height: 200,
+        width: 200,
+      },
+      container: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        top: 20,
+        width: 340,
+        bottom: 90,
+      }
 });
 
 export default withNavigation(ClosetList);
