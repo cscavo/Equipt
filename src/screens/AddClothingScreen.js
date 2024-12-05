@@ -1,10 +1,11 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableHighlight } from "react-native";
 import SaveButtonComp from "../components/SaveButtonComp";
 import {Context} from '../context/ClothingContext';
 import ImageDetail from '../components/ImageDetail';
 
 //Note for myself (Natalia): X in a box icon will go in this screen to return to the previous screen
+
 
 const randomClothingPiece = () => {
   let clothingImage = [require("../../assets/adaptive-icon.png"), require("../../assets/favicon.png")];
@@ -17,13 +18,18 @@ const AddClothingScreen = (props) => {
   const previousScreen = navigation.getParam("previousScreen", "Closet");
   const {state, addClothing} = useContext(Context);
   const [category, setCategory] = useState(" ");
+  const [randomClothing,setRandomClothing] = useState({});
 
+  useEffect(() => {
+    let tempRandom = randomClothingPiece();
+    setRandomClothing({...randomClothing, uri: tempRandom});
+  }, [])
   
   return(
     <View styles={styles.container}>
 
 
-        <ImageDetail imageSource={(randomClothingPiece())} />
+        <ImageDetail imageSource={randomClothing} />
 
       <TouchableOpacity onPress={() => navigation.navigate(previousScreen)}
         style = {styles.closeButton}>
@@ -49,7 +55,7 @@ const AddClothingScreen = (props) => {
       </View>
         
         <View style = {styles.saveButtonContainer}>
-          <SaveButtonComp onPressSave={() => {addClothing(category), props.navigation.navigate("Closet")}}/>
+          <SaveButtonComp onPressSave={() => {addClothing(category, randomClothing.uri), props.navigation.navigate("Closet")}}/>
         </View>
 
     </View>

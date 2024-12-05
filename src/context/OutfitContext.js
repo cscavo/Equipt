@@ -8,60 +8,17 @@ const outfitReducer = (state, action) => {
          case 'add_outfit':
             stateLength++;
             let idMath = stateLength;
-            return [...state, {id: idMath}]
+            return [...state, {top: action.payload.outfit.top, bottom: action.payload.outfit.bottom, accessory: action.payload.outfit.accessory, id: idMath}]
             case 'delete_outfit':
                 return state.filter((outfitItem) => {
                     return outfitItem.id !== action.payload
                 })
-
-        case 'add_TopToOutfit':
-                return state.map((outfitItem) => {
-                    if (outfitItem.id === action.payload.id) {
-                        {
-                           
-                           
-
-                            return {...state, top: action.payload.top } ;
-                        }   
+            case 'change_skin_color':
+                return state.map((outfitItem) =>{
+                    if (outfitItem.id === action.payload.id){
+                        return{...state, id:0, skinColor: action.payload.skinColor}
                     }
-            
-                    else{
-                        return blogPost;
-                    }
-                })
-        case 'add_BottomToOutfit':
-                return state.map((outfitItem) => {
-                    if (outfitItem.id === action.payload.id) {
-                        {
-                            return {...state, bottom: action.payload.top } ;
-                        }  
-                    }
-            
-                    else{
-                        return blogPost;
-                    }
-                })
-        case 'add_AccessoryToOutfit':
-                return state.map((outfitItem) => {
-                    if (outfitItem.id === action.payload.id) {
-                        {
-                           
-                           
-
-                            return {...state, accessory: action.payload.top } ;
-                        }
-
-
-                       
-                        
-                    }
-            
-                    else{
-                        return blogPost;
-                    }
-                })
-
-        
+                }) 
         default:
             return state;
         
@@ -69,9 +26,9 @@ const outfitReducer = (state, action) => {
     }   
 }
 const addOutfit = (dispatch) => {
-    return async (title, content,callback) =>{
+    return async (outfit,callback) =>{
   
-    dispatch({type: 'add_outfit', payload: {}})
+    dispatch({type: 'add_outfit', payload: {outfit}})
     callback();
     }
 }
@@ -80,23 +37,14 @@ const deleteOutfit = (dispatch) => {
     dispatch({type: 'delete_outfit', payload: id })
 }
 }
-const addToptoOutfit = () =>{
-    return (id, top) =>{
-        dispatch({type: 'add_TopToOutfit', payload: {top: top, id: id}})
-    }
-}
-const addBottomtoOutfit = () =>{
-    return (id, bottom) =>{
-        dispatch({type: 'add_BottomToOutfit', payload: {bottom: bottom, id: id}})
-    }
-}
-const addAccessorytoOutfit = () =>{
-    return (id, accessory) =>{
-        dispatch({type: 'add_AccessoryToOutfit', payload: {accessory: accessory, id: id}})
+const changeSkinColor = (dispatch) => {
+    return (id,skinColor) => {
+        dispatch({type: 'change_skin_color', payload:{id: 0, skinColor: skinColor}})
     }
 }
 
+
 export const {Context, Provider} = createDataContext(outfitReducer,
-                                    {addOutfit, deleteOutfit, addToptoOutfit, addBottomtoOutfit, addAccessorytoOutfit}, 
+                                    {addOutfit, deleteOutfit, changeSkinColor}, 
                                     [{}]);
 

@@ -53,7 +53,7 @@ const ClosetList = (props) => {
       renderItem={({item}) => {
         console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.category);
         return <View> 
-            <ImageDetail description={item.category} imageSource= {require('../../assets/chiyo_christmas.png')} />  
+            <ImageDetail description={item.category} imageSource= {item.imagePath} />  
           </View>
     }} /> 
     

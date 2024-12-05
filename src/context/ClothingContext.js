@@ -14,7 +14,7 @@ const generateClothing = (category, image) => {
 const clothingReducer = (state, action) => {
     switch(action.type){
          case 'add_clothing':
-            return [...state, generateClothing(action.payload.category)]
+            return [...state, generateClothing(action.payload.category, action.payload.image)]
             case 'delete_clothing':
                 return state.filter((clothingItem) => {
                     return clothingItem.id !== action.payload

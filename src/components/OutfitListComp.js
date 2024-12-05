@@ -3,16 +3,18 @@ import { withNavigation } from "react-navigation";
 import { Text, StyleSheet,View, Image,Button, FlatList, TouchableOpacity} from "react-native";
 
 
-import {Context} from '../context/OutfitContext'
+import {Context} from '../context/OutfitContext';
+import {Context as SkinColorContext} from '../context/SkinColorContext';
 import {Feather } from '@expo/vector-icons';
 import ImageDetail from './ImageDetail';
 
 
+
 const OutfitListComp = (props) => {
 
-    
+  const {skinColorState, changeSkinColor} = useContext(SkinColorContext);
   const {state, addOutfit, deleteOutfit} = useContext(Context);
-
+  
     
   return <View style= {styles.view}> 
     
@@ -22,15 +24,20 @@ const OutfitListComp = (props) => {
       data={state} 
       KeyExtractor={(outfitItem) => {return outfitItem.title}} 
       renderItem={({item}) => {
-        console.log("RENDERING A OUTFIT ITEM WITH ID: " + item.id);
+        console.log("RENDERING A OUTFIT ITEM WITH ID: " + item.id + " " + item.top + " " + item.bottom + " " + item.accessory);
+        console.log("skinColor " + skinColorState.skinColor)
         return <TouchableOpacity onPress = {() => {addOutfit()}}>
+          <View style= {{backgroundColor: skinColorState.skinColor}}> 
           <View style= {styles.row}> 
-            <Text>{item.id}</Text>
+            <Image style= {{height: 100, width: 100}} source= {item.top}></Image>
+            <Image style= {{height: 100, width: 100}} source= {item.bottom}></Image>
+            <Image style= {{height: 100, width: 100}} source= {item.accessory}></Image>
 
             <TouchableOpacity  onPress={() => {deleteOutfit(item.id)}}>
                  <Feather name = "trash" style={styles.icon}/>
              </TouchableOpacity>
 
+          </View>
           </View>
         </TouchableOpacity>
         
@@ -68,6 +75,8 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderBottomWidth: 1,
         borderColor: 'grey',
+        
+        
         
       },
       icon: {

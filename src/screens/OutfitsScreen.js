@@ -38,16 +38,16 @@ const OutfitsScreen = (props) => {
     return myFilteredArray;
   }
 
-  const addToState = (category, id) => {
+  const addToState = (category, imagePath) => {
     switch(category){
       case "top" :
-        setImagesToDisplay({...imagesToDisplay, top: id});
+        setImagesToDisplay({...imagesToDisplay, top: imagePath});
         break;
       case "bottom" :
-        setImagesToDisplay({...imagesToDisplay, bottom: id});
+        setImagesToDisplay({...imagesToDisplay, bottom: imagePath});
         break;
       case "accessory" :
-        setImagesToDisplay({...imagesToDisplay, accessory: id});
+        setImagesToDisplay({...imagesToDisplay, accessory: imagePath});
         break;
       case "emptyObject" :
         setImagesToDisplay({...imagesToDisplay, top: null, bottom: null, accessory: null});
@@ -132,9 +132,9 @@ const OutfitsScreen = (props) => {
           }
 
           
-          <Text>{imagesToDisplay.top}</Text>
-          <Text>{imagesToDisplay.bottom}</Text>
-          <Text>{imagesToDisplay.accessory}</Text>
+          <Image style= {{height: 100, width: 100}} source= {imagesToDisplay.top}></Image>
+          <Image style= {{height: 100, width: 100}} source= {imagesToDisplay.bottom}></Image>
+          <Image style= {{height: 100, width: 100}} source= {imagesToDisplay.accessory}></Image>
           
 
           
@@ -142,7 +142,7 @@ const OutfitsScreen = (props) => {
         </View>
         
 
-        <SaveButtonComp onPressSave={() => {setScreenState(OUTFIT_SCREEN_STATE), addOutfit(), addToState("emptyObject")}} saveButtonStyle={addOutfit_styles.saveButton} />
+        <SaveButtonComp onPressSave={() => {setScreenState(OUTFIT_SCREEN_STATE), addOutfit(imagesToDisplay)}} saveButtonStyle={addOutfit_styles.saveButton} />
 
         
       </View>
@@ -169,11 +169,11 @@ const OutfitsScreen = (props) => {
             numColumns={2}
             KeyExtractor={(clothingItem) => {return clothingItem.id}} 
             renderItem={({item}) => {
-              console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.id);
-              return <TouchableOpacity onPress = {() => {addToState(clothingToFilter, item.id), setScreenState(ADDOUTFIT_SCREEN_STATE)} }>
+              console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.id + item.imagePath);
+              return <TouchableOpacity onPress = {() => {addToState(clothingToFilter, item.imagePath), setScreenState(ADDOUTFIT_SCREEN_STATE)} }>
         
               <View> 
-                <ImageDetail description={item.category} imageSource= {require('../../assets/chiyo_christmas.png')} /> 
+                <ImageDetail description={item.category} imageSource= {item.imagePath} /> 
               </View>
 
               </TouchableOpacity>

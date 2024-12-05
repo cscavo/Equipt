@@ -1,11 +1,11 @@
 import React, {useReducer} from "react";
-import createDataContext from "./createDataContext"
+import createDataContext from "./createSkinColorDataContext"
 
 
-const skinColorgReducer = (state, action) => {
+const skinColorgReducer = (skinColorState, action) => {
     switch(action.type){
          case 'change_skin_color':
-            return {...state, skinColor: action.payload.skinColor}
+            return {...skinColorState, skinColor: action.payload.skinColor}
         default:
             return state;
         

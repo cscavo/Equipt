@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import NavBarComp from "../components/NavBarComp";
-
+import {Context} from '../context/SkinColorContext';
 
 const ProfileScreen = (props) => {
+
+  const {skinColorState, changeSkinColor} = useContext(Context);
 
   const [border1, setBorder1] = useState(false);
   const [border2, setBorder2] = useState(false);
@@ -16,6 +18,7 @@ const ProfileScreen = (props) => {
   const [border9, setBorder9] = useState(false);
   const [border10, setBorder10] = useState(false);
 
+  console.log("skin color " + skinColorState.skinColor)
   return (
   <View style={styles.container}>    
 
@@ -24,7 +27,7 @@ const ProfileScreen = (props) => {
     <View style={styles.skincolorContainer}>
       <Text style={styles.skinColorText}>Skin Color</Text>
       <View style={styles.skinRow}>
-        <TouchableOpacity onPress={() => {setBorder1(true), setBorder2(false), setBorder3(false), setBorder4(false), setBorder5(false), 
+        <TouchableOpacity onPress={() => {changeSkinColor("#f5e9e3"), setBorder1(true), setBorder2(false), setBorder3(false), setBorder4(false), setBorder5(false), 
                                           setBorder6(false), setBorder7(false), setBorder8(false), setBorder9(false), setBorder10(false)}}>
           {border1==true
           ? <Image style={{height: 40, width: 40, backgroundColor: "#f5e9e3", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
