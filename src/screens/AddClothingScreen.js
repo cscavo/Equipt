@@ -4,7 +4,6 @@ import SaveButtonComp from "../components/SaveButtonComp";
 import {Context} from '../context/ClothingContext';
 import ImageDetail from '../components/ImageDetail';
 
-//Note for myself (Natalia): X in a box icon will go in this screen to return to the previous screen
 
 
 const randomClothingPiece = () => {
@@ -29,7 +28,7 @@ const AddClothingScreen = (props) => {
     <View styles={styles.container}>
 
 
-        <ImageDetail imageSource={randomClothing} />
+      <Image source={randomClothing.uri} style={styles.photo}></Image>
 
       <TouchableOpacity onPress={() => navigation.navigate(previousScreen)}
         style = {styles.closeButton}>
@@ -65,13 +64,14 @@ const AddClothingScreen = (props) => {
 
 const styles = StyleSheet.create({
   photo: {
-    fontSize: 35,
+    height: 290,
+    width: 290,
     alignSelf: "center",
     paddingHorizontal: 100,
     paddingVertical: 120,
     marginTop: 60,
     marginBottom: 30,
-    backgroundColor: 'lightgrey',
+    //backgroundColor: 'lightgrey',
     borderWidth: 2,
     top: 70
   },
@@ -83,15 +83,17 @@ const styles = StyleSheet.create({
   categoryText: {
     fontSize: 30,
     marginLeft: 30,
-    top: 90
+    marginTop: 70,
+    marginBottom: 20,
+    //top: 90
   },
   categoryContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    paddingVertical: 10,
-    marginBottom: 25,
+    //paddingVertical: 10,
+    //marginBottom: 25,
     gap: 17,
-    top: 100
+    //top: 100,
   },
   category: {
     fontSize: 20,
@@ -106,10 +108,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     paddingHorizontal: 15,
-    backgroundColor: "grey"
+    backgroundColor: "slategrey",
+    overflow: "hidden",
+    color: "white"
+    //textDecorationColor: "grey"
   },
   saveButtonContainer: {
-    top: 100
+    top: 40,
+    //padding: 10
   },
   container: {
     flex: 1,

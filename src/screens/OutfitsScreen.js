@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from "react-
 
 import {Context} from "../context/OutfitContext";
 import {Context as ClothingContext} from '../context/ClothingContext';
+import {Context as SkinColorContext} from '../context/SkinColorContext';
 
 import NavBarComp from "../components/NavBarComp";
 import WardrobeButtonComp from "../components/WardrobeButtonComp";
@@ -26,6 +27,7 @@ const OutfitsScreen = (props) => {
   const [clothingType, setClothingType] = useState("");
   const [imagesToDisplay, setImagesToDisplay] = useState({});
   const [clothingToFilter, setClothingToFilter] = useState("");
+  const {skinColorState, changeSkinColor} = useContext(SkinColorContext);
   const image = '../../assets/addOutfit_UI.png';
   
   const {addOutfit, deleteOutfit} = useContext(Context);
@@ -59,7 +61,6 @@ const OutfitsScreen = (props) => {
     }
     
   }
-
   switch(screenState){
 
     case OUTFIT_SCREEN_STATE:
@@ -76,12 +77,12 @@ const OutfitsScreen = (props) => {
 
         <Image style={styles.flex}/>
 
+        
         <TouchableOpacity onPress={() => {setScreenState(ADDOUTFIT_SCREEN_STATE)}}>
           <Image style={outfit_styles.addOutfitIcon} source={require('../../assets/addOutfit_UI.png')} />
         </TouchableOpacity>
 
-        <NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} wardrobeIconBox={outfit_styles.outfitsButtonBold}
-              profileIcon={require('../../assets/person_UI.png')}
+        <NavBarComp wardrobeIconBox={outfit_styles.wardrobeNavBar}
               onPressCamera={() => {props.navigation.navigate("AddClothing")}}
               onPressProfile={() => {props.navigation.navigate("Profile")}}/>
 
@@ -94,55 +95,66 @@ const OutfitsScreen = (props) => {
       whatToDisplay = 
 
       <View>
+
         <Text style={addOutfit_styles.equipText}>Equip Clothing</Text>
         <Image style={addOutfit_styles.background}></Image>
 
-        <TouchableOpacity onPress={() => {setScreenState(OUTFIT_SCREEN_STATE)}}
+        <TouchableOpacity onPress={() => {setScreenState(OUTFIT_SCREEN_STATE), addToState("emptyObject")}}
           style = {addOutfit_styles.closeButton}>
           <Image style={{width: 45, height: 45}} source={require('../../assets/close-button.png')} />
         </TouchableOpacity>
 
-        <View style={addOutfit_styles.buttonContainer}>
+        <View style= {{backgroundColor: skinColorState.skinColor, top: 20}}>
+
+          <View style={addOutfit_styles.buttonContainer}>
 
           {imagesToDisplay.top == null
           ? <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
-                                           {setClothingType("Tops")}
-                                            setClothingToFilter("top")}}>
+                                              {setClothingType("Tops")}
+                                              setClothingToFilter("top")}}>
             <Image style={addOutfit_styles.clothingButton}></Image>
           </TouchableOpacity>
-          : <Text>DISPLAY</Text>
+          : <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
+                                              {setClothingType("Tops")}
+                                              setClothingToFilter("top")}}>
+              <Image style= {addOutfit_styles.clothingButton} source= {imagesToDisplay.top}></Image>
+            </TouchableOpacity>
+          
           }
 
           {imagesToDisplay.bottom == null
           ? <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
-                                           {setClothingType("Bottoms")}
-                                            setClothingToFilter("bottom")}}>
+                                              {setClothingType("Bottoms")}
+                                              setClothingToFilter("bottom")}}>
             <Image style={addOutfit_styles.clothingButton}></Image>
           </TouchableOpacity>
-          : <Text>DISPLAY</Text>
+          : <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
+                                              {setClothingType("Bottoms")}
+                                              setClothingToFilter("bottom")}}>
+              <Image style= {addOutfit_styles.clothingButton} source= {imagesToDisplay.bottom}></Image>
+            </TouchableOpacity>
           }
 
           {imagesToDisplay.accessory == null
           ? <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
-                                           {setClothingType("Accessories")}
-                                            setClothingToFilter("accessory")}}>
+                                              {setClothingType("Accessories")}
+                                              setClothingToFilter("accessory")}}>
             <Image style={addOutfit_styles.clothingButton}></Image>
           </TouchableOpacity>
-          : <Text>DISPLAY</Text>
+          : <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
+                                              {setClothingType("Accessories")}
+                                                setClothingToFilter("accessory")}}>
+              <Image style= {addOutfit_styles.clothingButton} source= {imagesToDisplay.accessory}></Image>
+            </TouchableOpacity>
           }
 
-          
-          <Image style= {{height: 100, width: 100}} source= {imagesToDisplay.top}></Image>
-          <Image style= {{height: 100, width: 100}} source= {imagesToDisplay.bottom}></Image>
-          <Image style= {{height: 100, width: 100}} source= {imagesToDisplay.accessory}></Image>
-          
-
-          
-
+          </View>
         </View>
+
+        
         
 
-        <SaveButtonComp onPressSave={() => {setScreenState(OUTFIT_SCREEN_STATE), addOutfit(imagesToDisplay)}} saveButtonStyle={addOutfit_styles.saveButton} />
+        <SaveButtonComp onPressSave={() => {setScreenState(OUTFIT_SCREEN_STATE), addOutfit(imagesToDisplay), addToState("emptyObject")}} saveButtonStyle={addOutfit_styles.saveButton} />
 
         
       </View>
@@ -202,8 +214,11 @@ const outfit_styles = StyleSheet.create({
   },
   outfitsButtonBold: {
     borderWidth: 2,
-    borderRadius: 4,
+    //borderRadius: 4,
     backgroundColor: "lightgrey"
+  },
+  wardrobeNavBar: {
+    opacity: 1
   },
   addOutfitIcon: {
     position: "absolute",
@@ -238,17 +253,18 @@ const addOutfit_styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'column',
     alignItems: "flex-end",
-    marginTop: 55,
+    marginVertical: 40,
     right: 40,
     gap: 25
   },
   clothingButton: {
     height: 80,
     width: 80,
-    backgroundColor: "slategrey",
+    //backgroundColor: "slategrey",
+    borderWidth: 2
   },
   saveButton: {
-    top: 140
+    top: 80
   },
 });
 

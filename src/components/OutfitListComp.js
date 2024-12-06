@@ -26,20 +26,21 @@ const OutfitListComp = (props) => {
       renderItem={({item}) => {
         console.log("RENDERING A OUTFIT ITEM WITH ID: " + item.id + " " + item.top + " " + item.bottom + " " + item.accessory);
         console.log("skinColor " + skinColorState.skinColor)
-        return <TouchableOpacity onPress = {() => {addOutfit()}}>
-          <View style= {{backgroundColor: skinColorState.skinColor}}> 
+        return <View style= {{backgroundColor: skinColorState.skinColor}}> 
+            
           <View style= {styles.row}> 
-            <Image style= {{height: 100, width: 100}} source= {item.top}></Image>
-            <Image style= {{height: 100, width: 100}} source= {item.bottom}></Image>
-            <Image style= {{height: 100, width: 100}} source= {item.accessory}></Image>
 
             <TouchableOpacity  onPress={() => {deleteOutfit(item.id)}}>
                  <Feather name = "trash" style={styles.icon}/>
              </TouchableOpacity>
 
+            <Image style= {{height: 100, width: 100, borderWidth: 2}} source= {item.top}></Image>
+            <Image style= {{height: 100, width: 100, borderWidth: 2}} source= {item.bottom}></Image>
+            <Image style= {{height: 100, width: 100, borderWidth: 2}} source= {item.accessory}></Image>
+
           </View>
           </View>
-        </TouchableOpacity>
+
         
     }} /> 
     
@@ -71,16 +72,19 @@ const styles = StyleSheet.create({
       row:{
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: "stretch",
         paddingVertical: 20,
         borderTopWidth: 1,
         borderBottomWidth: 1,
-        borderColor: 'grey',
-        
-        
+        borderBottomWidth: 5,
+        borderColor: "white",
+        right: 5,
         
       },
       icon: {
-        fontSize: 40
+        fontSize: 28,
+        left: 8,
+        bottom: 12
       },
 });
 

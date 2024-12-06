@@ -14,11 +14,11 @@ const NavBarComp = (props) => {
     </TouchableOpacity>
 
     <TouchableOpacity onPress={ props.onPressCamera }>
-        <Image style={styles.image} source={require('../../assets/camera_UI.png')} />
+        <Image style={styles.camera} source={require('../../assets/camera_UI.png')} />
     </TouchableOpacity>
 
     <TouchableOpacity onPress={ props.onPressProfile }>
-        <Image style={[styles.image, props.profileIconBox]} source={props.profileIcon} />
+        <Image style={[styles.image, props.profileIconBox]} source={require('../../assets/person_UI.png')} />
     </TouchableOpacity>
 
   </View>
@@ -33,13 +33,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderTopWidth: 1,
         paddingVertical: 10,
+        paddingBottom: 30,
         marginTop: 20,
         gap: 60,
         backgroundColor: 'lightgrey',
     },
+    camera: {
+        height: 50,
+        width: 50,
+    },
     image: {
-        height: 60,
-        width: 60,
+        height: 50,
+        width: 50,
+        opacity: 0.4
     },
 });
 

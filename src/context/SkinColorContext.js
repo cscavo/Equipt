@@ -2,7 +2,7 @@ import React, {useReducer} from "react";
 import createDataContext from "./createSkinColorDataContext"
 
 
-const skinColorgReducer = (skinColorState, action) => {
+const skinColorReducer = (skinColorState, action) => {
     switch(action.type){
          case 'change_skin_color':
             return {...skinColorState, skinColor: action.payload.skinColor}
@@ -21,7 +21,7 @@ const changeSkinColor = (dispatch) => {
 }
 
 
-export const {Context, Provider} = createDataContext(skinColorgReducer,
+export const {Context, Provider} = createDataContext(skinColorReducer,
                                     {changeSkinColor}, 
-                                    {skinColor: "efdb0"});
+                                    {skinColor: "ffffff"});
 

@@ -35,89 +35,84 @@ const ProfileScreen = (props) => {
     <View style={styles.skincolorContainer}>
       <Text style={styles.skinColorText}>Skin Color</Text>
       <View style={styles.skinRow}>
-        <TouchableOpacity onPress={() => {changeSkinColor("#f5e9e3"), setBorder1(true), setBorder2(false), setBorder3(false), setBorder4(false), setBorder5(false), 
-                                          setBorder6(false), setBorder7(false), setBorder8(false), setBorder9(false), setBorder10(false)}}>
-          {border1==true
-          ? <Image style={{height: 40, width: 40, backgroundColor: "#f5e9e3", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
-          : <Image style={{height: 40, width: 40, backgroundColor: "#f5e9e3", borderRadius: 6, borderWidth: 3, borderColor: "#f5e9e3"}}></Image>
-          }
-        </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => {setBorder1(false), setBorder2(true), setBorder3(false), setBorder4(false), setBorder5(false), 
-                                          setBorder6(false), setBorder7(false), setBorder8(false), setBorder9(false), setBorder10(false)}}>
-          {border2==true
-          ? <Image style={{height: 40, width: 40, backgroundColor: "#efdbd0", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
-          : <Image style={{height: 40, width: 40, backgroundColor: "#efdbd0", borderRadius: 6, borderWidth: 3, borderColor: "#efdbd0"}}></Image>
-          }
-        </TouchableOpacity>
+        {skinColorState.skinColor=="#f5e9e3"
+        ? <Image style={{height: 40, width: 40, backgroundColor: "#f5e9e3", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
+        : <TouchableOpacity onPress={() => {changeSkinColor("#f5e9e3")}}>
+            <Image style={{height: 40, width: 40, backgroundColor: "#f5e9e3", borderRadius: 6, borderWidth: 3, borderColor: "#f5e9e3"}}></Image>
+          </TouchableOpacity>
+        }
 
-        <TouchableOpacity onPress={() => {setBorder1(false), setBorder2(false), setBorder3(true), setBorder4(false), setBorder5(false),
-                                          setBorder6(false), setBorder7(false), setBorder8(false), setBorder9(false), setBorder10(false)}}>
-          {border3==true
-          ? <Image style={{height: 40, width: 40, backgroundColor: "#e7c7b2", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
-          : <Image style={{height: 40, width: 40, backgroundColor: "#e7c7b2", borderRadius: 6, borderWidth: 3, borderColor: "#e7c7b2"}}></Image>
-          }
+        {skinColorState.skinColor=="#efdbd0"
+        ? <Image style={{height: 40, width: 40, backgroundColor: "#efdbd0", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
+        : <TouchableOpacity onPress={() => {changeSkinColor("#efdbd0")}}>
+          <Image style={{height: 40, width: 40, backgroundColor: "#efdbd0", borderRadius: 6, borderWidth: 3, borderColor: "#efdbd0"}}></Image>
         </TouchableOpacity>
+        }
 
-        <TouchableOpacity onPress={() => {setBorder1(false), setBorder2(false), setBorder3(false), setBorder4(true), setBorder5(false),
-                                          setBorder6(false), setBorder7(false), setBorder8(false), setBorder9(false), setBorder10(false)}}>
-          {border4==true
-          ? <Image style={{height: 40, width: 40, backgroundColor: "#d8b5a1", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
-          : <Image style={{height: 40, width: 40, backgroundColor: "#d8b5a1", borderRadius: 6, borderWidth: 3, borderColor: "#d8b5a1"}}></Image>
-          }
+        {skinColorState.skinColor=="#e7c7b2"
+        ? <Image style={{height: 40, width: 40, backgroundColor: "#e7c7b2", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
+        :<TouchableOpacity onPress={() => {changeSkinColor("#e7c7b2")}}>
+          <Image style={{height: 40, width: 40, backgroundColor: "#e7c7b2", borderRadius: 6, borderWidth: 3, borderColor: "#e7c7b2"}}></Image>
         </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => {setBorder1(false), setBorder2(false), setBorder3(false), setBorder4(false), setBorder5(true),
-                                          setBorder6(false), setBorder7(false), setBorder8(false), setBorder9(false), setBorder10(false)}}>
-          {border5==true
-          ? <Image style={{height: 40, width: 40, backgroundColor: "#c99c85", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
-          : <Image style={{height: 40, width: 40, backgroundColor: "#c99c85", borderRadius: 6, borderWidth: 3, borderColor: "#c99c85"}}></Image>
-          }
+        }
+        
+        {skinColorState.skinColor=="#d8b5a1"
+        ? <Image style={{height: 40, width: 40, backgroundColor: "#d8b5a1", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
+        : <TouchableOpacity onPress={() => {changeSkinColor("#d8b5a1")}}>
+          <Image style={{height: 40, width: 40, backgroundColor: "#d8b5a1", borderRadius: 6, borderWidth: 3, borderColor: "#d8b5a1"}}></Image>
         </TouchableOpacity>
+        }
+        
+        {skinColorState.skinColor=="#c99c85"
+        ? <Image style={{height: 40, width: 40, backgroundColor: "#c99c85", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
+        :<TouchableOpacity onPress={() => {changeSkinColor("#c99c85")}}>
+          <Image style={{height: 40, width: 40, backgroundColor: "#c99c85", borderRadius: 6, borderWidth: 3, borderColor: "#c99c85"}}></Image>
+        </TouchableOpacity>
+        }
+        
         
       </View>
 
       <View style={styles.skinRow}>
-        <TouchableOpacity onPress={() => {setBorder1(false), setBorder2(false), setBorder3(false), setBorder4(false), setBorder5(false)
-                                          setBorder6(true), setBorder7(false), setBorder8(false), setBorder9(false), setBorder10(false)}}>
-          {border6==true
-          ? <Image style={{height: 40, width: 40, backgroundColor: "#c0876e", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
-          : <Image style={{height: 40, width: 40, backgroundColor: "#c0876e", borderRadius: 6, borderWidth: 3, borderColor: "#c0876e"}}></Image>
-          }
-        </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => {setBorder1(false), setBorder2(false), setBorder3(false), setBorder4(false), setBorder5(false),
-                                          setBorder6(false), setBorder7(true), setBorder8(false), setBorder9(false), setBorder10(false)}}>
-          {border7==true
-          ? <Image style={{height: 40, width: 40, backgroundColor: "#ad7054", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
-          : <Image style={{height: 40, width: 40, backgroundColor: "#ad7054", borderRadius: 6, borderWidth: 3, borderColor: "#ad7054"}}></Image>
-          }
+        {skinColorState.skinColor=="#c0876e"
+        ? <Image style={{height: 40, width: 40, backgroundColor: "#c0876e", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
+        : <TouchableOpacity onPress={() => {changeSkinColor("#c0876e")}}>
+          <Image style={{height: 40, width: 40, backgroundColor: "#c0876e", borderRadius: 6, borderWidth: 3, borderColor: "#c0876e"}}></Image>
         </TouchableOpacity>
+        }
 
-        <TouchableOpacity onPress={() => {setBorder1(false), setBorder2(false), setBorder3(false), setBorder4(false), setBorder5(false), 
-                                          setBorder6(false), setBorder7(false), setBorder8(true), setBorder9(false), setBorder10(false)}}>
-          {border8==true
-          ? <Image style={{height: 40, width: 40, backgroundColor: "#875743", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
-          : <Image style={{height: 40, width: 40, backgroundColor: "#875743", borderRadius: 6, borderWidth: 3, borderColor: "#875743"}}></Image>
-          }
-          </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => {setBorder1(false), setBorder2(false), setBorder3(false), setBorder4(false), setBorder5(false), 
-                                          setBorder6(false), setBorder7(false), setBorder8(false), setBorder9(true), setBorder10(false)}}>
-          {border9==true
-          ? <Image style={{height: 40, width: 40, backgroundColor: "#6c4635", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
-          : <Image style={{height: 40, width: 40, backgroundColor: "#6c4635", borderRadius: 6, borderWidth: 3, borderColor: "#6c4635"}}></Image>
-          }
+        {skinColorState.skinColor=="#ad7054"
+        ? <Image style={{height: 40, width: 40, backgroundColor: "#ad7054", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
+        : <TouchableOpacity onPress={() => {changeSkinColor("#ad7054")}}>
+          <Image style={{height: 40, width: 40, backgroundColor: "#ad7054", borderRadius: 6, borderWidth: 3, borderColor: "#ad7054"}}></Image>
         </TouchableOpacity>
+        }
+
+        {skinColorState.skinColor=="#875743"
+        ? <Image style={{height: 40, width: 40, backgroundColor: "#875743", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
+        : <TouchableOpacity onPress={() => {changeSkinColor("#875743")}}>
+          <Image style={{height: 40, width: 40, backgroundColor: "#875743", borderRadius: 6, borderWidth: 3, borderColor: "#875743"}}></Image>
+        </TouchableOpacity>
+        }
         
 
-        <TouchableOpacity onPress={() => {setBorder1(false), setBorder2(false), setBorder3(false), setBorder4(false), setBorder5(false), 
-                                          setBorder6(false), setBorder7(false), setBorder8(false), setBorder9(false), setBorder10(true)}}>
-          {border10==true
-          ? <Image style={{height: 40, width: 40, backgroundColor: "#4c2b22", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
-          : <Image style={{height: 40, width: 40, backgroundColor: "#4c2b22", borderRadius: 6, borderWidth: 3, borderColor: "#4c2b22"}}></Image>
-          }
+        
+        {skinColorState.skinColor=="#6c4635"
+        ? <Image style={{height: 40, width: 40, backgroundColor: "#6c4635", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
+        : <TouchableOpacity onPress={() => {changeSkinColor("#6c4635")}}>
+          <Image style={{height: 40, width: 40, backgroundColor: "#6c4635", borderRadius: 6, borderWidth: 3, borderColor: "#6c4635"}}></Image>
         </TouchableOpacity>
+        }
+        
+        {skinColorState.skinColor=="#4c2b22"
+        ? <Image style={{height: 40, width: 40, backgroundColor: "#4c2b22", borderRadius: 6, borderWidth: 3, borderColor: "black"}}></Image>
+        :<TouchableOpacity onPress={() => {changeSkinColor("#4c2b22")}}>
+          <Image style={{height: 40, width: 40, backgroundColor: "#4c2b22", borderRadius: 6, borderWidth: 3, borderColor: "#4c2b22"}}></Image>
+        </TouchableOpacity>
+        }
+        
       </View>
     </View>
     
@@ -132,7 +127,7 @@ const ProfileScreen = (props) => {
     <NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} 
             onPressWardrobe={() => {props.navigation.navigate("Closet")}}
             onPressCamera={() => {props.navigation.navigate("AddClothing")}}
-            profileIcon={require('../../assets/person_UI.png')} profileIconBox={styles.profileButtonBold}/>
+            profileIcon={require('../../assets/person_UI.png')} profileIconBox={styles.profileNavBar}/>
 
   </View>
   
@@ -183,17 +178,16 @@ const styles = StyleSheet.create({
     //backgroundColor: 'lightgrey',
     borderWidth: 2
   },
-  profileButtonBold: {
-    borderWidth: 3,
-    borderRadius: 4
+  profileNavBar: {
+    opacity: 1
   },
   container: {
     flex: 1
   },
   statsText: {
     fontSize: 18,
-    paddingHorizontal: 10,
-    marginBottom: 10
+    paddingHorizontal: 27,
+    marginBottom: 10,
   },
   statsWord: {
     fontSize: 20,

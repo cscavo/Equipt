@@ -30,8 +30,7 @@ const ClosetScreen = (props) => {
         <ClosetList  data= {state}/>
       </View>
 
-      <NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} wardrobeIconBox={styles.closetButtonBold}
-            profileIcon={require('../../assets/person_UI.png')}
+      <NavBarComp wardrobeIconBox={styles.wardrobeNavBar}
             onPressCamera={() => {props.navigation.navigate("AddClothing")}}
             onPressProfile={() => {props.navigation.navigate("Profile")}}/>
 
@@ -48,8 +47,11 @@ const styles = StyleSheet.create({
   },
   closetButtonBold: {
     borderWidth: 2,
-    borderRadius: 4,
+    //borderRadius: 4,
     backgroundColor: "lightgrey"
+  },
+  wardrobeNavBar: {
+    opacity: 1
   },
   image: {
     flex: 1
