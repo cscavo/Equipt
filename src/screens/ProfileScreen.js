@@ -2,10 +2,18 @@ import React, {useState, useContext} from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import NavBarComp from "../components/NavBarComp";
 import {Context} from '../context/SkinColorContext';
+import {Context as ClothingContext} from '../context/ClothingContext';
 
 const ProfileScreen = (props) => {
 
   const {skinColorState, changeSkinColor} = useContext(Context);
+  const {state: clothingState} = useContext(ClothingContext);
+
+  //Calculating counts for each category
+  const topCount = clothingState.filter(item => item.category === "top").length;
+  const bottomCount = clothingState.filter(item => item.category === "bottom").length;
+  const accessoryCount = clothingState.filter(item => item.category === "accessory").length;
+
 
   const [border1, setBorder1] = useState(false);
   const [border2, setBorder2] = useState(false);
@@ -110,16 +118,16 @@ const ProfileScreen = (props) => {
           : <Image style={{height: 40, width: 40, backgroundColor: "#4c2b22", borderRadius: 6, borderWidth: 3, borderColor: "#4c2b22"}}></Image>
           }
         </TouchableOpacity>
-
-        
-        
       </View>
     </View>
     
-
     
-
-    <Image style={styles.stats}></Image>
+  <View style = {styles.stats}> 
+    <Text style={styles.statsWord}>Stats</Text>
+    <Text style={styles.statsText}>Tops: {topCount}</Text>
+    <Text style={styles.statsText}>Bottoms: {bottomCount}</Text>
+    <Text style={styles.statsText}>Accessories: {accessoryCount}</Text>
+  </View>
 
     <NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} 
             onPressWardrobe={() => {props.navigation.navigate("Closet")}}
@@ -181,6 +189,16 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1
+  },
+  statsText: {
+    fontSize: 18,
+    paddingHorizontal: 10,
+    marginBottom: 10
+  },
+  statsWord: {
+    fontSize: 20,
+    paddingHorizontal: 27,
+    marginVertical: 20,
   }
 });
 
