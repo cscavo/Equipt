@@ -3,6 +3,8 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import NavBarComp from "../components/NavBarComp";
 import {Context} from '../context/SkinColorContext';
 import {Context as ClothingContext} from '../context/ClothingContext';
+import {BarChart} from "react-native-chart-kit";
+import {Dimensions} from "react-native";
 
 const ProfileScreen = (props) => {
 
@@ -117,12 +119,40 @@ const ProfileScreen = (props) => {
     </View>
     
     
-  <View style = {styles.stats}> 
-    <Text style={styles.statsWord}>Stats</Text>
-    <Text style={styles.statsText}>Tops: {topCount}</Text>
-    <Text style={styles.statsText}>Bottoms: {bottomCount}</Text>
-    <Text style={styles.statsText}>Accessories: {accessoryCount}</Text>
-  </View>
+<View style={styles.stats}>
+  <Text style={styles.statsWord}>Stats</Text>
+
+  <BarChart
+    data={{
+      labels: ["Tops", "Bottoms", "Accessories"],
+      datasets: [
+        {
+          data: [topCount, bottomCount, accessoryCount],
+        },
+      ],
+    }}
+    width={Dimensions.get("window").width - 150}
+    height={220}
+    yAxisLabel=""
+    yAxisInterval={1}
+    chartConfig={{
+      backgroundGradientFrom: "#ffffff",
+      backgroundGradientTo: "#ffffff",
+      decimalPlaces: 0,
+      color: (opacity = 1) => `rgb(0, 0, 0), ${opacity})`,
+      /* THE ONLY WAY I COULD MAKE THE BARS SOLID BLACK */
+      fillShadowGradientFrom: "#000000",
+      fillShadowGradientFromOpacity: 1,
+      fillShadowGradientTo: "#000000",
+      fillShadowGradientToOpacity: 1,
+      /* ********************************** */
+    }}
+    style={{
+      marginVertical: 8,
+      borderRadius: 16,
+    }}
+  />
+</View>
 
     <NavBarComp wardrobeIcon={require('../../assets/wardrobe_UI.png')} 
             onPressWardrobe={() => {props.navigation.navigate("Closet")}}
@@ -132,7 +162,6 @@ const ProfileScreen = (props) => {
   </View>
   
   );
-
 };
 
 const styles = StyleSheet.create({
