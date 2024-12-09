@@ -25,7 +25,7 @@ const AddClothingScreen = (props) => {
   }, [])
   
   return(
-    <View styles={styles.container}>
+    <View style={styles.container}>
 
 
       <Image source={randomClothing.uri} style={styles.photo}></Image>
@@ -69,11 +69,11 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     paddingHorizontal: 100,
     paddingVertical: 120,
-    marginTop: 60,
-    marginBottom: 30,
-    //backgroundColor: 'lightgrey',
+    marginTop: 90,
+    marginBottom: 70,
     borderWidth: 2,
-    top: 70
+    top: 70,
+    borderColor: "#02200E"
   },
   closeButton: {
     position: 'absolute',
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginTop: 70,
     marginBottom: 20,
+    color: "#02200E"
     //top: 90
   },
   categoryContainer: {
@@ -100,7 +101,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     padding: 10,
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
+    borderColor: "#02200E",
+    color: "#02200E"
   },
   categoryClicked: {
     fontSize: 20,
@@ -108,17 +111,16 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     paddingHorizontal: 15,
-    backgroundColor: "slategrey",
+    backgroundColor: "#193625",
     overflow: "hidden",
-    color: "white"
-    //textDecorationColor: "grey"
+    color: "#FFFDF9"
   },
   saveButtonContainer: {
-    top: 40,
-    //padding: 10
+    top: 90,
   },
   container: {
     flex: 1,
+    backgroundColor: "#FFFDF9"
   },
 
   

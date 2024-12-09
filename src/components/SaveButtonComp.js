@@ -22,12 +22,11 @@ const SaveButtonComp = (props) => {
 const styles = StyleSheet.create({
     text: {
         fontSize: 30,
-        //borderWidth: 2,
         alignSelf: "center",
         paddingHorizontal: 40,
         paddingVertical: 12,
-        //borderRadius: 4,
-        backgroundColor: 'lightgrey'
+        backgroundColor: '#DCE4E0',
+        color: "#193625"
     },
 });
 

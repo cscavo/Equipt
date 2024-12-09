@@ -43,5 +43,5 @@ const addClothing = (dispatch) => {
 
 export const {Context, Provider} = createDataContext(clothingReducer,
                                     {addClothing}, 
-                                    [{category: "top", imagePath: '../../assets/chiyo christmas.png', id: 1}]);
+                                    []);
 

@@ -8,14 +8,16 @@ const WardrobeButtonComp = (props) => {
 
 <View>
 
+    <Image style={props.buttonBold}></Image>
     
     <View style={styles.container}>
+  
         <TouchableOpacity onPress={props.onPressCloset}>
-            <Text style={[styles.text, props.closetButtonBold]}>Closet</Text>
+            <Text style={[styles.text, styles.closet]}>Closet</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={props.onPressOutfits}>
-            <Text style={[styles.text, props.outfitsButtonBold]}>Outfits</Text>
+            <Text style={[styles.text]}>Outfits</Text>
         </TouchableOpacity>
     </View>
 
@@ -29,9 +31,10 @@ const WardrobeButtonComp = (props) => {
 const styles = StyleSheet.create({
     text: {
         fontSize: 32,
-        //borderWidth: 1.5,
         padding: 20,
-        paddingHorizontal: 50
+        paddingHorizontal: 50,
+        //color: "#3B153B"
+        color: "#193625"
     },
     container: {
         flexDirection: 'row',
@@ -40,6 +43,8 @@ const styles = StyleSheet.create({
         marginTop: 60,
         borderTopWidth: 1.5,
         borderBottomWidth: 1.5,
+        //borderColor: "#3B153B",
+        borderColor: "#193625"
     },
 });
 

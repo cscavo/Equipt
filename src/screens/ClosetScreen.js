@@ -21,7 +21,7 @@ const ClosetScreen = (props) => {
       
 
       <WardrobeButtonComp onPressCloset={() => {props.navigation.navigate("Closet")}} onPressOutfits={() => {props.navigation.navigate("Outfits")}}
-                          closetButtonBold={styles.closetButtonBold}/>
+                          buttonBold={styles.closetButtonBold}/>
 
       <Text style={styles.text}>Closet</Text>
       
@@ -43,18 +43,30 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 35,
     alignSelf: "center",
-    paddingTop: 20
+    paddingTop: 20,
+    color: "#02200E"
   },
   closetButtonBold: {
-    borderWidth: 2,
-    //borderRadius: 4,
-    backgroundColor: "lightgrey"
+    height: 80,
+    width: 187,
+    top: 61,
+    position: "absolute",
+    //justifyContent: "flex-start",
+    //alignItems: "flex-start",
+    borderRightWidth: 2,
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    //borderColor: "#3B153B",
+    //backgroundColor: "#E7D7E7"
+    borderColor: "#193625",
+    backgroundColor: '#DAE7E0'
   },
   wardrobeNavBar: {
     opacity: 1
   },
   image: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#FFFDF9"
   },
   closetListContainer: {
     flex: 1

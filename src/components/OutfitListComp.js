@@ -71,15 +71,13 @@ const styles = StyleSheet.create({
       },
       row:{
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: "stretch",
+        gap: 12,
+        //alignItems: "stretch",
         paddingVertical: 20,
         borderTopWidth: 1,
         borderBottomWidth: 1,
-        borderBottomWidth: 5,
+        borderBottomWidth: 7,
         borderColor: "white",
-        right: 5,
-        
       },
       icon: {
         fontSize: 28,

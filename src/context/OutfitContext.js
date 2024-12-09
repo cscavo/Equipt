@@ -45,6 +45,5 @@ const changeSkinColor = (dispatch) => {
 
 
 export const {Context, Provider} = createDataContext(outfitReducer,
-                                    {addOutfit, deleteOutfit, changeSkinColor}, 
-                                    [{}]);
+                                    {addOutfit, deleteOutfit, changeSkinColor}, []);
 

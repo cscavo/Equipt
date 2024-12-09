@@ -31,12 +31,13 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
-        borderTopWidth: 1,
+        borderTopWidth: 2,
         paddingVertical: 10,
         paddingBottom: 30,
         marginTop: 20,
-        gap: 60,
-        backgroundColor: 'lightgrey',
+        gap: 70,
+        borderColor: "#193625",
+        backgroundColor: '#DAE7E0'
     },
     camera: {
         height: 50,

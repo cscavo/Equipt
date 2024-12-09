@@ -66,10 +66,10 @@ const OutfitsScreen = (props) => {
     case OUTFIT_SCREEN_STATE:
       whatToDisplay = 
 
-      <View style={styles.flex}>
+      <View style={[styles.flex, styles.backgroundColor]}>
 
         <WardrobeButtonComp onPressCloset={() => {props.navigation.navigate("Closet")}} onPressOutfits={() => {props.navigation.navigate("Outfits")}}
-                        outfitsButtonBold={outfit_styles.outfitsButtonBold}/>
+                        buttonBold={outfit_styles.outfitsButtonBold}/>
 
         <Text style={outfit_styles.text}>Outfits</Text>
        
@@ -89,22 +89,24 @@ const OutfitsScreen = (props) => {
       </View>
 
       break;
-
+      //style= {{backgroundColor: "#DCE4E0", top: 20}}
   // SCREEN WITH MANNEQUIN WHERE YOU SAVE OUTFIT
     case ADDOUTFIT_SCREEN_STATE:
       whatToDisplay = 
 
-      <View>
+      <View style={styles.backgroundColor}>
 
         <Text style={addOutfit_styles.equipText}>Equip Clothing</Text>
         <Image style={addOutfit_styles.background}></Image>
+
 
         <TouchableOpacity onPress={() => {setScreenState(OUTFIT_SCREEN_STATE), addToState("emptyObject")}}
           style = {addOutfit_styles.closeButton}>
           <Image style={{width: 45, height: 45}} source={require('../../assets/close-button.png')} />
         </TouchableOpacity>
 
-        <View style= {{backgroundColor: skinColorState.skinColor, top: 20}}>
+
+        <View >
 
           <View style={addOutfit_styles.buttonContainer}>
 
@@ -112,7 +114,7 @@ const OutfitsScreen = (props) => {
           ? <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
                                               {setClothingType("Tops")}
                                               setClothingToFilter("top")}}>
-            <Image style={addOutfit_styles.clothingButton}></Image>
+            <Image style={addOutfit_styles.clothingButton} source={require('../../assets/top.png')}></Image>
           </TouchableOpacity>
           : <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
                                               {setClothingType("Tops")}
@@ -126,7 +128,7 @@ const OutfitsScreen = (props) => {
           ? <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
                                               {setClothingType("Bottoms")}
                                               setClothingToFilter("bottom")}}>
-            <Image style={addOutfit_styles.clothingButton}></Image>
+            <Image style={addOutfit_styles.clothingButton} source={require('../../assets/bottom.png')}></Image>
           </TouchableOpacity>
           : <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
                                               {setClothingType("Bottoms")}
@@ -139,7 +141,7 @@ const OutfitsScreen = (props) => {
           ? <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
                                               {setClothingType("Accessories")}
                                               setClothingToFilter("accessory")}}>
-            <Image style={addOutfit_styles.clothingButton}></Image>
+            <Image style={addOutfit_styles.clothingButton} source={require('../../assets/acc.png')}></Image>
           </TouchableOpacity>
           : <TouchableOpacity onPress={() => {setScreenState(CHOOSECLOTHING_SCREEN_STATE)
                                               {setClothingType("Accessories")}
@@ -149,10 +151,12 @@ const OutfitsScreen = (props) => {
           }
 
           </View>
+
+            <Image style={{position: "absolute", height: 320, width: 120, top: 90, left: 50, backgroundColor: skinColorState.skinColor}}></Image>
+            <Image style={styles.mannequin} source={require('../../assets/mannequin.png')}></Image>
+          
         </View>
 
-        
-        
 
         <SaveButtonComp onPressSave={() => {setScreenState(OUTFIT_SCREEN_STATE), addOutfit(imagesToDisplay), addToState("emptyObject")}} saveButtonStyle={addOutfit_styles.saveButton} />
 
@@ -162,12 +166,12 @@ const OutfitsScreen = (props) => {
         console.log(imagesToDisplay);
         console.log(clothingToFilter);
       break;
-
+//
 // THE SCREEN WHERE YOU CHOOSE CLOTHING BY CATEOGORY
 
     case CHOOSECLOTHING_SCREEN_STATE:
       whatToDisplay = 
-      <View style={{flex: 1}}>
+      <View style={[styles.flex, styles.backgroundColor]}>
         
         <TouchableOpacity onPress={() => {setScreenState(ADDOUTFIT_SCREEN_STATE)}}>
           <Image style={chooseClothing_styles.backArrow} source={require('../../assets/backArrow_UI.png')}></Image>
@@ -185,7 +189,7 @@ const OutfitsScreen = (props) => {
               return <TouchableOpacity onPress = {() => {addToState(clothingToFilter, item.imagePath), setScreenState(ADDOUTFIT_SCREEN_STATE)} }>
         
               <View> 
-                <ImageDetail description={item.category} imageSource= {item.imagePath} /> 
+                <ImageDetail imageSource= {item.imagePath} /> 
               </View>
 
               </TouchableOpacity>
@@ -210,20 +214,28 @@ const outfit_styles = StyleSheet.create({
   text: {
     fontSize: 35,
     alignSelf: "center",
-    paddingTop: 20
+    paddingTop: 20,
+    color: "#02200E"
   },
   outfitsButtonBold: {
-    borderWidth: 2,
-    //borderRadius: 4,
-    backgroundColor: "lightgrey"
+    height: 80,
+    width: 250,
+    top: 61,
+    left: 188,
+    position: "absolute",
+    borderLeftWidth: 2,
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    borderColor: "#193625",
+    backgroundColor: '#DAE7E0'
   },
   wardrobeNavBar: {
     opacity: 1
   },
   addOutfitIcon: {
     position: "absolute",
-    height: 80,
-    width: 80,
+    height: 90,
+    width: 90,
     alignSelf: "flex-end",
     bottom: 0,
     right: 10
@@ -234,37 +246,39 @@ const outfit_styles = StyleSheet.create({
 const addOutfit_styles = StyleSheet.create({
   closeButton: {
     position: 'absolute',
-    top: 65,
+    top: 85,
     left: 15
   },
   equipText: {
     fontSize: 30,
     alignSelf: "center",
-    paddingTop: 70
+    paddingTop: 90,
+    //marginBottom: 60,
+    color: "#02200E"
   },
   background: {
     alignSelf: "center",
     position: "absolute",
-    marginTop: 130,
-    height: 350,
+    marginTop: 190,
+    height: 390,
     width: 400,
-    backgroundColor: "lightgrey"
+    backgroundColor: "#DCE4E0",
   },
   buttonContainer: {
     flexDirection: 'column',
     alignItems: "flex-end",
     marginVertical: 40,
+    top: 60,
     right: 40,
     gap: 25
   },
   clothingButton: {
-    height: 80,
-    width: 80,
-    //backgroundColor: "slategrey",
-    borderWidth: 2
+    height: 90,
+    width: 90,
+    borderWidth: 2,
   },
   saveButton: {
-    top: 80
+    top: 120
   },
 });
 
@@ -272,12 +286,13 @@ const chooseClothing_styles = StyleSheet.create({
   text: {
     fontSize: 30,
     alignSelf: "center",
-    paddingTop: 45
+    marginTop: 70,
+    color: "#02200E"
   },
   backArrow: {
     height: 70,
     width: 70,
-    marginTop: 30,
+    marginTop: 55,
     position: "absolute"
   }, 
   dummyClothing: {
@@ -327,6 +342,15 @@ const styles = StyleSheet.create({
     },
     flex: {
       flex: 1
+    },
+    backgroundColor: {
+    backgroundColor: "#FFFDF9"
+    },
+    mannequin: {
+      position: "absolute",
+      height: 350,
+      width: 240,
+      top: 87
     }
 });
 
