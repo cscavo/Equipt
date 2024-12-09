@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
         borderTopWidth: 1.5,
         borderBottomWidth: 1.5,
         //borderColor: "#3B153B",
-        borderColor: "#193625"
+        borderColor: "#193625",
+        gap: 20
     },
 });
 

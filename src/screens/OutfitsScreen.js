@@ -219,9 +219,9 @@ const outfit_styles = StyleSheet.create({
   },
   outfitsButtonBold: {
     height: 80,
-    width: 250,
+    width: 220,
     top: 61,
-    left: 188,
+    left: 210,
     position: "absolute",
     borderLeftWidth: 2,
     borderTopWidth: 2,
@@ -261,7 +261,7 @@ const addOutfit_styles = StyleSheet.create({
     position: "absolute",
     marginTop: 190,
     height: 390,
-    width: 400,
+    width: 450,
     backgroundColor: "#DCE4E0",
   },
   buttonContainer: {
@@ -269,7 +269,7 @@ const addOutfit_styles = StyleSheet.create({
     alignItems: "flex-end",
     marginVertical: 40,
     top: 60,
-    right: 40,
+    right: 60,
     gap: 25
   },
   clothingButton: {

@@ -49,6 +49,7 @@ const ClosetList = (props) => {
     <FlatList 
     data={props.data} 
     numColumns={2}
+    columnWrapperStyle = {{gap: 20}}
     KeyExtractor={(clothingItem) => {return clothingItem.id}} 
       renderItem={({item}) => {
         console.log("RENDERING A CLOTHING ITEM WITH ID: " + item.category);
@@ -104,8 +105,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignSelf: 'center',
         top: 20,
-        width: 340,
+        width: 360,
         bottom: 90,
+        
       }
 });
 

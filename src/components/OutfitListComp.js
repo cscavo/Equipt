@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         flex: 1,
         paddingVertical: 20,
+        //height: -10
       },
       row:{
         flexDirection: 'row',

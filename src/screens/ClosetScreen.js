@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   closetButtonBold: {
     height: 80,
-    width: 187,
+    width: 213,
     top: 61,
     position: "absolute",
     //justifyContent: "flex-start",

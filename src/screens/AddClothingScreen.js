@@ -64,8 +64,8 @@ const AddClothingScreen = (props) => {
 
 const styles = StyleSheet.create({
   photo: {
-    height: 290,
-    width: 290,
+    height: 350,
+    width: 350,
     alignSelf: "center",
     paddingHorizontal: 100,
     paddingVertical: 120,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     color: "#FFFDF9"
   },
   saveButtonContainer: {
-    top: 90,
+    top: 80,
   },
   container: {
     flex: 1,
