@@ -7,7 +7,16 @@ import ImageDetail from '../components/ImageDetail';
 
 
 const randomClothingPiece = () => {
-  let clothingImage = [require("../../assets/adaptive-icon.png"), require("../../assets/favicon.png")];
+  let clothingImage = [require("../../assets/Clothing/1.jpg"), require("../../assets/Clothing/2.jpg"), require("../../assets/Clothing/3.jpg"), require("../../assets/Clothing/4.jpg"), require("../../assets/Clothing/5.jpg"),
+                      require("../../assets/Clothing/6.jpg"), require("../../assets/Clothing/7.jpg"), require("../../assets/Clothing/8.jpg"), require("../../assets/Clothing/9.jpg"), require("../../assets/Clothing/10.jpg"),
+                      require("../../assets/Clothing/11.jpg"), require("../../assets/Clothing/12.jpg"), require("../../assets/Clothing/13.jpg"), require("../../assets/Clothing/14.jpg"), require("../../assets/Clothing/15.jpg"),
+                      require("../../assets/Clothing/16.jpg"), require("../../assets/Clothing/17.jpg"), require("../../assets/Clothing/18.jpg"), require("../../assets/Clothing/19.jpg"), require("../../assets/Clothing/20.jpg"),
+                      require("../../assets/Clothing/21.jpg"), require("../../assets/Clothing/22.jpg"), require("../../assets/Clothing/23.jpg"), require("../../assets/Clothing/24.jpg"), require("../../assets/Clothing/25.jpg"),
+                      require("../../assets/Clothing/26.jpg"), require("../../assets/Clothing/27.jpg"), require("../../assets/Clothing/28.jpg"), require("../../assets/Clothing/29.jpg"), require("../../assets/Clothing/30.jpg"),
+                      require("../../assets/Clothing/31.jpg"), require("../../assets/Clothing/32.jpg"), require("../../assets/Clothing/33.jpg"), require("../../assets/Clothing/34.jpg"), require("../../assets/Clothing/35.jpg"),
+                      require("../../assets/Clothing/36.jpg"), require("../../assets/Clothing/37.jpg"), require("../../assets/Clothing/38.jpg"), require("../../assets/Clothing/39.jpg"), require("../../assets/Clothing/40.jpg"),
+                      require("../../assets/Clothing/41.jpg"), require("../../assets/Clothing/42.jpg"), require("../../assets/Clothing/43.jpg"), require("../../assets/Clothing/44.jpg"), require("../../assets/Clothing/45.jpg"),
+  ];
   let image = clothingImage[Math.floor(Math.random() * clothingImage.length)];
   return image;
 }
